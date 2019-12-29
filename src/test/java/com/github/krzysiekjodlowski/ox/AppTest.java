@@ -13,7 +13,6 @@ public class AppTest {
 
         // act
 
-
         // assert
         assertTrue(true);
     }
