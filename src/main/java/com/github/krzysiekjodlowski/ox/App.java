@@ -1,8 +1,21 @@
 package com.github.krzysiekjodlowski.ox;
 
-public class App {
+/**
+ * @author KrzysiekJodlowski
+ */
+final class App {
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to OX game!");
+    /**
+     * Private according to checkstyle.
+     */
+    private App() {
+
+    }
+
+    /**
+     * @param args line arguments
+     */
+    public static void main(final String[] args) {
+
     }
 }
