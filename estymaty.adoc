@@ -1,0 +1,23 @@
+== Estymaty - project estimates
+
+Here you can find aims and assumptions about project:
+
+|===
+|*date*|*pessimistic*|*realistic*|*optimistic*
+|30.12.19
+|generating empty 3x3 board
+|+ players taking turns marking board
+|+ win condition is checked
+|31.12.19
+|optimistic from yesterday
+|+ 3 rounds, main menu
+|+ dumb AI, simple settings menu with player type change
+|01.01.20
+|optimistic from yesterday
+|+ loading default settings and language from file
+|+ changing all default settings
+|02.01.20
+|optimistic from yesterday
+|+ logger
+|+ network-game
+|===
