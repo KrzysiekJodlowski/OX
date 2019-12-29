@@ -1,0 +1,13 @@
+== OX
+*Author*: _Krzysztof Jodłowski_ +
+*Version*: _0.1_
+
+*Description*: Simple _tic-tac-toe_ game.
+
+To run project you have to use:
+
+* bash or other compatible unix shell
+* jdk version 11+
+* maven version 3.6.0+
+
+To build project simply run _"mvn package"_ command, to make it work run _"java -jar target/OX-0.1.jar"_
