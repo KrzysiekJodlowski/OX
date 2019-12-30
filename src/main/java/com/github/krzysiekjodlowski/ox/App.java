@@ -21,14 +21,16 @@ final class App {
      * In this iteration App checks if there
      * is any custom input and then creates
      * game board representation for each case
-     * from that file.
+     * from that file. Implementation of this
+     * method will change and should not be
+     * concerned when reviewing.
      * @param args file with custom input
      * @throws FileNotFoundException when there is no such file
-     * @throws BoardSizeOutOfBoundsException when board size
+     * @throws BoardSideLengthOutOfBoundsException when board size
      * parameter is too big
      */
     public static void main(final String[] args)
-            throws FileNotFoundException, BoardSizeOutOfBoundsException {
+            throws FileNotFoundException {
         Board board;
         int boardSize = 3;
         BoardPrinter boardPrinter = new BoardPrinter();
@@ -50,8 +52,5 @@ final class App {
                     boardPrinter.getBoardRepresentation(board)
             );
         }
-
-
-
     }
 }

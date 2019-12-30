@@ -13,52 +13,22 @@ class Board {
      */
     private final int boardCapacity;
     /**
-     * Minimal boardSize.
-     */
-    private final int minBoardSize = 3;
-    /**
-     * Maximal boardSize (temporary value for now).
-     */
-    private final int maxBoardSize = 1000;
-    /**
      * Core field in this class.
      */
-    private final Map<FieldNumber, Symbol> moves = new HashMap<>();
+    private final Map<FieldNumber, Symbol> markedFields = new HashMap<>();
     /**
      * Size of one side of the board.
      */
-    private final int boardSize;
+    private final int boardSideLength;
 
     /**
      *  Constructor initialization.
-     * @param boardSize defines one board game side length
-     * @throws BoardSizeOutOfBoundsException exception
+     * @param boardSideLength defines one board game side length
      * which should be handled by client
      */
-    Board(final int boardSize) throws BoardSizeOutOfBoundsException {
-        this.checkBoardSize(boardSize);
-        this.boardSize = boardSize;
-        this.boardCapacity = boardSize * boardSize;
-    }
-
-    /**
-     * Simple check if boardSize parameter meets the conditions.
-     * @param boardSize passed by client when creating a Board
-     * @throws BoardSizeOutOfBoundsException exception
-     * which should be handled by client
-     */
-    private void checkBoardSize(final int boardSize)
-            throws BoardSizeOutOfBoundsException {
-        if (boardSize < this.minBoardSize) {
-            throw new BoardSizeOutOfBoundsException(
-                    String.format("boardSize should be greater than %d!",
-                    this.minBoardSize));
-        }
-        if (boardSize > this.maxBoardSize) {
-            throw new BoardSizeOutOfBoundsException(
-                    String.format("boardSize should be smaller than %d!",
-                    this.maxBoardSize));
-        }
+    Board(final int boardSideLength) {
+        this.boardSideLength = boardSideLength;
+        this.boardCapacity = boardSideLength * boardSideLength;
     }
 
     /**
@@ -69,42 +39,42 @@ class Board {
     }
 
     /**
-     * Add moves to game board.
+     * Mark fields in game board.
      * @param fieldNumber represents number choose by player
      * @param symbol represents player symbol
      */
-    void addMove(final FieldNumber fieldNumber, final Symbol symbol) {
-        this.moves.put(fieldNumber, symbol);
+    void markField(final FieldNumber fieldNumber, final Symbol symbol) {
+        this.markedFields.put(fieldNumber, symbol);
     }
 
     /**
-     * @return all moves made by players
+     * @return all fields marked by players
      */
-    Map<FieldNumber, Symbol> getMoves() {
-        return this.moves;
+    Map<FieldNumber, Symbol> getMarkedFields() {
+        return this.markedFields;
     }
 
     /**
-     * Check if there is a move in board.
+     * Check if there is field marked in board.
      * @param fieldNumber represents number of a field
      * @return true if there is provided fieldNumber
      */
-    boolean containMove(final FieldNumber fieldNumber) {
-        return this.moves.containsKey(fieldNumber);
+    boolean containMarkedField(final FieldNumber fieldNumber) {
+        return this.markedFields.containsKey(fieldNumber);
     }
 
     /**
      * @return size of game board
      */
-    int getSize() {
-        return this.boardSize;
+    int getBoardSideLength() {
+        return this.boardSideLength;
     }
 
     /**
      * @param fieldNumber represents number of a field
      * @return player symbol
      */
-    public Symbol getMove(final FieldNumber fieldNumber) {
-        return this.moves.get(fieldNumber);
+    public Symbol getMarkedField(final FieldNumber fieldNumber) {
+        return this.markedFields.get(fieldNumber);
     }
 }

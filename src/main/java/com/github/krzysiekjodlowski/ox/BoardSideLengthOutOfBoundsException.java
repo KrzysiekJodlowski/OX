@@ -3,11 +3,11 @@ package com.github.krzysiekjodlowski.ox;
 /**
  * @author Krzysztof Jodlowski
  */
-public class BoardSizeOutOfBoundsException extends Exception {
+public class BoardSideLengthOutOfBoundsException extends Exception {
     /**
      * @param message message provided by user
      */
-    public BoardSizeOutOfBoundsException(final String message) {
+    public BoardSideLengthOutOfBoundsException(final String message) {
         super(message);
     }
 }

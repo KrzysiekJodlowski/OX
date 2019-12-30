@@ -24,7 +24,8 @@ enum Symbol {
      * Useful in board representation.
      * @return String representation of an enum
      */
-    String getValue() {
-        return value;
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

@@ -14,7 +14,7 @@ To run project:
 
 - without any custom input run _"standard"_ script
 - project with provided custom input run _"custom"_ script
-- running script from command line by typing *_./<scriptname>.sh <input>.input_*
-- if you can't run a script first execute this command: *_chmod 755 <scriptname>.sh_*
+- running script from command line by typing eg: *_./custom.sh (custom_board_sizes.input)_*
+- if you can't run a script first execute command like: *_chmod 755 custom.sh_*
 
 

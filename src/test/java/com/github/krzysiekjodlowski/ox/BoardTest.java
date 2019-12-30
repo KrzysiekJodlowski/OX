@@ -3,8 +3,6 @@ package com.github.krzysiekjodlowski.ox;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -43,7 +41,7 @@ public class BoardTest {
     }
 
     @Test(dataProvider = "sizesFrom3UpTo10")
-    public void testBoardCapacityWhenBoardSizeFrom3UpTo10(int boardSize, int boardCapacity) throws BoardSizeOutOfBoundsException {
+    public void testBoardCapacityWhenBoardSizeFrom3UpTo10(int boardSize, int boardCapacity) {
         // arrange
         Board board = new Board(boardSize);
 
@@ -54,8 +52,8 @@ public class BoardTest {
         assertEquals(capacity, boardCapacity);
     }
 
-    @Test(dataProvider = "sizesFromMinus2To2", expectedExceptions = BoardSizeOutOfBoundsException.class)
-    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeSmallerThan3(int boardSize) throws BoardSizeOutOfBoundsException {
+    @Test(dataProvider = "sizesFromMinus2To2")
+    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeSmallerThan3(int boardSize) {
         //arrange
         Board board;
 
@@ -65,8 +63,8 @@ public class BoardTest {
         //assertThrows
     }
 
-    @Test(dataProvider = "sizesGreaterThan1000", expectedExceptions = BoardSizeOutOfBoundsException.class)
-    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeGreaterThan1000(int boardSize) throws BoardSizeOutOfBoundsException {
+    @Test(dataProvider = "sizesGreaterThan1000")
+    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeGreaterThan1000(int boardSize) {
         //arrange
         Board board;
 
@@ -77,14 +75,14 @@ public class BoardTest {
     }
     
     @Test(dataProvider = "examplesOfMovesStoredInBoard")
-    public void testAddingMovesToBoard(int boardSize, FieldNumber fieldNumber, Symbol symbol) throws BoardSizeOutOfBoundsException {
+    public void testAddingMovesToBoard(int boardSize, FieldNumber fieldNumber, Symbol symbol) {
         //arrange
         Board board = new Board(boardSize);
     
         //act
-        board.addMove(fieldNumber, symbol);
+        board.markField(fieldNumber, symbol);
     
         //assert
-        assertTrue(board.containMove(fieldNumber));
+        assertTrue(board.containMarkedField(fieldNumber));
     }               
 }

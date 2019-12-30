@@ -8,11 +8,11 @@ class FieldNumber {
     /**
      * Field value.
      */
-    private final int number;
+    private final int value;
     /**
-     * @param number provided by client
+     * @param value provided by client
      */
-    FieldNumber(final int number) {
-        this.number = number;
+    FieldNumber(final int value) {
+        this.value = value;
     }
 }
