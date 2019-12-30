@@ -25,15 +25,14 @@ final class App {
      * method will change and should not be
      * concerned when reviewing.
      * @param args file with custom input
-     * @throws FileNotFoundException when there is no such file
-     * @throws BoardSideLengthOutOfBoundsException when board size
-     * parameter is too big
+     * @throws FileNotFoundException when there
+     * is no such file parameter is too big
      */
     public static void main(final String[] args)
             throws FileNotFoundException {
         Board board;
         int boardSize = 3;
-        BoardPrinter boardPrinter = new BoardPrinter();
+        BoardPrinter boardPrinter = new BoardPrinter(boardSize);
 
         if (args.length == 1) {
             Scanner scanner = new Scanner(

@@ -74,8 +74,8 @@ public class BoardPrinterTest {
         Board board = mock(Board.class);
         when(board.getBoardSideLength()).thenReturn(boardSideLength);
         when(board.getBoardCapacity()).thenReturn(boardCapacity);
-        when(board.containMarkedField(any(FieldNumber.class))).thenReturn(false);
-        BoardPrinter boardPrinter = new BoardPrinter();
+        when(board.getMarkedField(any(FieldNumber.class))).thenReturn(Symbol.EMPTY);
+        BoardPrinter boardPrinter = new BoardPrinter(boardSideLength);
 
         //act
         String generated = boardPrinter.getBoardRepresentation(board);

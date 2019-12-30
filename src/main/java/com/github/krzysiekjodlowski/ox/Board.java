@@ -15,7 +15,7 @@ class Board {
     /**
      * Core field in this class.
      */
-    private final Map<FieldNumber, Symbol> markedFields = new HashMap<>();
+    private final Map<FieldNumber, Symbol> fields = new HashMap<>();
     /**
      * Size of one side of the board.
      */
@@ -27,7 +27,14 @@ class Board {
      * which should be handled by client
      */
     Board(final int boardSideLength) {
-        this.boardSideLength = boardSideLength;
+        // Condition which should be checked in user interface
+        if (boardSideLength < 3 || boardSideLength > 1000) {
+            System.out.println("Board size should be between 3 and 1000! "
+                    + "Default size of 3 will be used instead.");
+            this.boardSideLength = 3;
+        } else {
+            this.boardSideLength = boardSideLength;
+        }
         this.boardCapacity = boardSideLength * boardSideLength;
     }
 
@@ -44,23 +51,14 @@ class Board {
      * @param symbol represents player symbol
      */
     void markField(final FieldNumber fieldNumber, final Symbol symbol) {
-        this.markedFields.put(fieldNumber, symbol);
+        this.fields.put(fieldNumber, symbol);
     }
 
     /**
      * @return all fields marked by players
      */
-    Map<FieldNumber, Symbol> getMarkedFields() {
-        return this.markedFields;
-    }
-
-    /**
-     * Check if there is field marked in board.
-     * @param fieldNumber represents number of a field
-     * @return true if there is provided fieldNumber
-     */
-    boolean containMarkedField(final FieldNumber fieldNumber) {
-        return this.markedFields.containsKey(fieldNumber);
+    Map<FieldNumber, Symbol> getFields() {
+        return this.fields;
     }
 
     /**
@@ -75,6 +73,16 @@ class Board {
      * @return player symbol
      */
     public Symbol getMarkedField(final FieldNumber fieldNumber) {
-        return this.markedFields.get(fieldNumber);
+        return this.containsMarkedField(fieldNumber)
+                ? this.fields.get(fieldNumber) : Symbol.EMPTY;
+    }
+
+    /**
+     * Check if there is field marked in board.
+     * @param fieldNumber represents number of a field
+     * @return true if there is provided fieldNumber
+     */
+    private boolean containsMarkedField(final FieldNumber fieldNumber) {
+        return this.fields.containsKey(fieldNumber);
     }
 }

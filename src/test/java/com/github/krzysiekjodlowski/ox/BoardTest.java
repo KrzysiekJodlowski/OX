@@ -51,28 +51,6 @@ public class BoardTest {
         // assert
         assertEquals(capacity, boardCapacity);
     }
-
-    @Test(dataProvider = "sizesFromMinus2To2")
-    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeSmallerThan3(int boardSize) {
-        //arrange
-        Board board;
-
-        //act
-        board = new Board(boardSize);
-
-        //assertThrows
-    }
-
-    @Test(dataProvider = "sizesGreaterThan1000")
-    public void testBoardConstructorThrowsBoardSizeOutOfBoundsExceptionWhenSizeGreaterThan1000(int boardSize) {
-        //arrange
-        Board board;
-
-        //act
-        board = new Board(boardSize);
-
-        //assertThrows
-    }
     
     @Test(dataProvider = "examplesOfMovesStoredInBoard")
     public void testAddingMovesToBoard(int boardSize, FieldNumber fieldNumber, Symbol symbol) {
@@ -83,6 +61,6 @@ public class BoardTest {
         board.markField(fieldNumber, symbol);
     
         //assert
-        assertTrue(board.containMarkedField(fieldNumber));
+        assertEquals(board.getMarkedField(fieldNumber), symbol);
     }               
 }

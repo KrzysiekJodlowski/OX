@@ -5,7 +5,7 @@ package com.github.krzysiekjodlowski.ox;
  * @author Krzysztof Jodlowski
  */
 enum Symbol {
-    NAUGHT("O"), CROSS("X");
+    NAUGHT("O"), CROSS("X"), EMPTY("s");
 
     /**
      * Holds String representation of an enum.
