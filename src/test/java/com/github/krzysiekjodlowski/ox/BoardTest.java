@@ -3,9 +3,23 @@ package com.github.krzysiekjodlowski.ox;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class BoardTest {
+
+    @DataProvider
+    public static Object[][] examplesOfMovesStoredInBoard() {
+        return new Object[][]{
+                {3, new FieldNumber(1), Symbol.NAUGHT},
+                {3, new FieldNumber(2), Symbol.CROSS},
+                {3, new FieldNumber(5), Symbol.NAUGHT},
+                {3, new FieldNumber(8), Symbol.CROSS},
+                {3, new FieldNumber(9), Symbol.NAUGHT},
+        };
+    }
 
     @DataProvider
     private Object[][] sizesFrom3UpTo10() {
@@ -61,4 +75,16 @@ public class BoardTest {
 
         //assertThrows
     }
+    
+    @Test(dataProvider = "examplesOfMovesStoredInBoard")
+    public void testAddingMovesToBoard(int boardSize, FieldNumber fieldNumber, Symbol symbol) throws BoardSizeOutOfBoundsException {
+        //arrange
+        Board board = new Board(boardSize);
+    
+        //act
+        board.addMove(fieldNumber, symbol);
+    
+        //assert
+        assertTrue(board.containMove(fieldNumber));
+    }               
 }
