@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Represents square game board.
  * @author KrzysiekJodlowski
  */
 class Board {
@@ -23,6 +24,10 @@ class Board {
      * Core field in this class.
      */
     private final Map<FieldNumber, Symbol> moves = new HashMap<>();
+    /**
+     * Size of one side of the board.
+     */
+    private final int boardSize;
 
     /**
      *  Constructor initialization.
@@ -32,6 +37,7 @@ class Board {
      */
     Board(final int boardSize) throws BoardSizeOutOfBoundsException {
         this.checkBoardSize(boardSize);
+        this.boardSize = boardSize;
         this.boardCapacity = boardSize * boardSize;
     }
 
@@ -83,7 +89,22 @@ class Board {
      * @param fieldNumber represents number of a field
      * @return true if there is provided fieldNumber
      */
-    public boolean containMove(final FieldNumber fieldNumber) {
+    boolean containMove(final FieldNumber fieldNumber) {
         return this.moves.containsKey(fieldNumber);
+    }
+
+    /**
+     * @return size of game board
+     */
+    int getSize() {
+        return this.boardSize;
+    }
+
+    /**
+     * @param fieldNumber represents number of a field
+     * @return player symbol
+     */
+    public Symbol getMove(final FieldNumber fieldNumber) {
+        return this.moves.get(fieldNumber);
     }
 }

@@ -25,6 +25,7 @@
         <version.maven>3.6.0</version.maven>
         <!-- dependency versions should go here, so below they can be omitted -->
         <version.dependency.testng>7.0.0</version.dependency.testng>
+        <version.dependency.mockito>3.2.4</version.dependency.mockito>
         <!-- plugin versions should go here, so below they can be omitted -->
         <version.plugin.maven.enforcer>3.0.0-M2</version.plugin.maven.enforcer>
         <version.plugin.maven.jar>3.1.0</version.plugin.maven.jar>
@@ -39,6 +40,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${version.dependency.testng}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${version.dependency.mockito}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
