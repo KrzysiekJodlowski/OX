@@ -4,63 +4,109 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class BoardTest {
 
     @DataProvider
-    public static Object[][] examplesOfMovesStoredInBoard() {
+    private Object[][] sizesFrom3UpTo10WithRepresentations() {
         return new Object[][]{
-                {3, new FieldNumber(1), Symbol.NAUGHT},
-                {3, new FieldNumber(2), Symbol.CROSS},
-                {3, new FieldNumber(5), Symbol.NAUGHT},
-                {3, new FieldNumber(8), Symbol.CROSS},
-                {3, new FieldNumber(9), Symbol.NAUGHT},
+                {3, " 1 2 3\n" +
+                        " 4 5 6\n" +
+                        " 7 8 9\n"},
+                {4, "  1  2  3  4\n" +
+                        "  5  6  7  8\n" +
+                        "  9 10 11 12\n" +
+                        " 13 14 15 16\n"},
+                {5, "  1  2  3  4  5\n" +
+                        "  6  7  8  9 10\n" +
+                        " 11 12 13 14 15\n" +
+                        " 16 17 18 19 20\n" +
+                        " 21 22 23 24 25\n"},
+                {6, "  1  2  3  4  5  6\n" +
+                        "  7  8  9 10 11 12\n" +
+                        " 13 14 15 16 17 18\n" +
+                        " 19 20 21 22 23 24\n" +
+                        " 25 26 27 28 29 30\n" +
+                        " 31 32 33 34 35 36\n"},
+                {7, "  1  2  3  4  5  6  7\n" +
+                        "  8  9 10 11 12 13 14\n" +
+                        " 15 16 17 18 19 20 21\n" +
+                        " 22 23 24 25 26 27 28\n" +
+                        " 29 30 31 32 33 34 35\n" +
+                        " 36 37 38 39 40 41 42\n" +
+                        " 43 44 45 46 47 48 49\n"},
+                {8, "  1  2  3  4  5  6  7  8\n" +
+                        "  9 10 11 12 13 14 15 16\n" +
+                        " 17 18 19 20 21 22 23 24\n" +
+                        " 25 26 27 28 29 30 31 32\n" +
+                        " 33 34 35 36 37 38 39 40\n" +
+                        " 41 42 43 44 45 46 47 48\n" +
+                        " 49 50 51 52 53 54 55 56\n" +
+                        " 57 58 59 60 61 62 63 64\n"},
+                {9, "  1  2  3  4  5  6  7  8  9\n" +
+                        " 10 11 12 13 14 15 16 17 18\n" +
+                        " 19 20 21 22 23 24 25 26 27\n" +
+                        " 28 29 30 31 32 33 34 35 36\n" +
+                        " 37 38 39 40 41 42 43 44 45\n" +
+                        " 46 47 48 49 50 51 52 53 54\n" +
+                        " 55 56 57 58 59 60 61 62 63\n" +
+                        " 64 65 66 67 68 69 70 71 72\n" +
+                        " 73 74 75 76 77 78 79 80 81\n"},
+                {10, "   1   2   3   4   5   6   7   8   9  10\n" +
+                        "  11  12  13  14  15  16  17  18  19  20\n" +
+                        "  21  22  23  24  25  26  27  28  29  30\n" +
+                        "  31  32  33  34  35  36  37  38  39  40\n" +
+                        "  41  42  43  44  45  46  47  48  49  50\n" +
+                        "  51  52  53  54  55  56  57  58  59  60\n" +
+                        "  61  62  63  64  65  66  67  68  69  70\n" +
+                        "  71  72  73  74  75  76  77  78  79  80\n" +
+                        "  81  82  83  84  85  86  87  88  89  90\n" +
+                        "  91  92  93  94  95  96  97  98  99 100\n"}
         };
     }
 
     @DataProvider
-    private Object[][] sizesFrom3UpTo10() {
-        return new Integer[][]{
-                {3, 9}, {4, 16}, {5, 25}, {6, 36}, {7, 49}, {8, 64}, {9, 81}, {10, 100}
+    public static Object[][] examplesOfMovesStoredInBoardWithRepresentations() throws NumberLowerThanOneException {
+        return new Object[][]{
+                {FieldNumber.from("1"), Symbol.NAUGHT, " O 2 3\n" +
+                        " 4 5 6\n" +
+                        " 7 8 9\n"},
+                {FieldNumber.from("2"), Symbol.CROSS, " 1 X 3\n" +
+                        " 4 5 6\n" +
+                        " 7 8 9\n"},
+                {FieldNumber.from("5"), Symbol.NAUGHT, " 1 2 3\n" +
+                        " 4 O 6\n" +
+                        " 7 8 9\n"},
+                {FieldNumber.from("8"), Symbol.CROSS, " 1 2 3\n" +
+                        " 4 5 6\n" +
+                        " 7 X 9\n"},
+                {FieldNumber.from("9"), Symbol.NAUGHT, " 1 2 3\n" +
+                        " 4 5 6\n" +
+                        " 7 8 O\n"},
         };
     }
 
-    @DataProvider
-    private Object[] sizesFromMinus2To2() {
-        return new Integer[]{
-                -2, -1, 0, 1, 2
-        };
-    }
-
-    @DataProvider
-    private Object[] sizesGreaterThan1000() {
-        return new Integer[]{
-                1001, 10000, 1000000
-        };
-    }
-
-    @Test(dataProvider = "sizesFrom3UpTo10")
-    public void testBoardCapacityWhenBoardSizeFrom3UpTo10(int boardSize, int boardCapacity) {
-        // arrange
-        Board board = new Board(boardSize);
-
-        // act
-        int capacity = board.getBoardCapacity();
-
-        // assert
-        assertEquals(capacity, boardCapacity);
-    }
-    
-    @Test(dataProvider = "examplesOfMovesStoredInBoard")
-    public void testAddingMovesToBoard(int boardSize, FieldNumber fieldNumber, Symbol symbol) {
+    @Test(dataProvider = "sizesFrom3UpTo10WithRepresentations")
+    public void testBoardToStringMethodWhenSize3To10(int boardSideLength, String representation) {
         //arrange
-        Board board = new Board(boardSize);
-    
+        Board board = new Board(boardSideLength);
+
+        //act
+        String generated = board.toString();
+
+        //assert
+        assertEquals(generated, representation);
+    }
+
+    @Test(dataProvider = "examplesOfMovesStoredInBoardWithRepresentations")
+    public void testAddingMovesToBoard(FieldNumber fieldNumber, Symbol symbol, String boardRepresentation) {
+        //arrange
+        Board board = new Board(3);
+
         //act
         board.markField(fieldNumber, symbol);
-    
+
         //assert
-        assertEquals(board.getMarkedField(fieldNumber), symbol);
-    }               
+        assertEquals(board.toString(), boardRepresentation);
+    }
 }

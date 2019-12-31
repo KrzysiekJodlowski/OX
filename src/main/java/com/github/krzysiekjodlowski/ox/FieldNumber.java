@@ -1,37 +1,59 @@
 package com.github.krzysiekjodlowski.ox;
 
-import java.util.Objects;
-
 /**
  * Represents each player move.
+ *
  * @author Krzysztof Jodlowski
  */
 class FieldNumber {
-    /**
-     * Field value.
-     */
     private final int value;
-    /**
-     * @param value provided by client
-     */
-    FieldNumber(final int value) {
+    private static final int MIN_VALUE = 1;
+
+    private FieldNumber(final int value) {
         this.value = value;
+    }
+
+    /**
+     * Creates FieldNumber from String.
+     *
+     * @param s should be convertible to integer
+     * @return FieldNumber representation
+     * @throws NumberFormatException       when can't be converted to int
+     * @throws NumberLowerThanOneException when input lower than MIN_VALUE
+     */
+    static FieldNumber from(String s) throws NumberFormatException, NumberLowerThanOneException {
+        int input = Integer.parseInt(s);
+        return valueOf(input);
+    }
+
+    /**
+     * Creates FieldNumber from int.
+     *
+     * @param i should be bigger than MIN_VALUE
+     * @return FieldNumber representation
+     * @throws NumberLowerThanOneException when input lower than MIN_VALUE
+     */
+    static FieldNumber valueOf(int i) throws NumberLowerThanOneException {
+        if (i < MIN_VALUE) {
+            throw new NumberLowerThanOneException();
+        }
+        return new FieldNumber(i);
     }
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) {
+        if (o == this) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof FieldNumber)) {
             return false;
         }
         FieldNumber that = (FieldNumber) o;
-        return value == that.value;
+        return this.value == that.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return this.value;
     }
 }

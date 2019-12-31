@@ -2,6 +2,13 @@ package com.github.krzysiekjodlowski.ox;
 
 import java.util.Scanner;
 
+/**
+ * Interacting directly with user,
+ * used for collecting input end
+ * outputting messages to user
+ *
+ * @author Krzysztof Jodlowski
+ */
 class ConsoleUI implements UI<String, Integer> {
     private final Scanner scanner;
 

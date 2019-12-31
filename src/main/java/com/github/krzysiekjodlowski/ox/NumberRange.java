@@ -3,6 +3,11 @@ package com.github.krzysiekjodlowski.ox;
 import java.math.BigDecimal;
 import java.util.Comparator;
 
+/**
+ * Keeps Number range provided by client.
+ *
+ * @author Krzysztof Jodlowski
+ */
 class NumberRange<Number> {
     private final Number minimalValue;
     private final Number maximumValue;
@@ -21,6 +26,12 @@ class NumberRange<Number> {
         }
     }
 
+    /**
+     * Returns true if checked Number is within provided range.
+     *
+     * @param value concrete Number value to check
+     * @return true if value is in range, false otherwise
+     */
     boolean numberInRange(Number value) {
         return this.numberComparator.compare(minimalValue, value)
                 <= this.comparisonEquality
