@@ -38,9 +38,10 @@ final class App {
             Scanner scanner = new Scanner(
                     new FileInputStream(new File(args[0]))
             );
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextInt()) {
                 boardSize = scanner.nextInt();
                 board = new Board(boardSize);
+                boardPrinter = new BoardPrinter(boardSize);
                 System.out.println(
                         boardPrinter.getBoardRepresentation(board)
                 );
