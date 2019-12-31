@@ -1,0 +1,5 @@
+== TODOs
+
+- all estimates (and more) are presented as _TODOs_
+- these will be updated daily (if not, please let me know)
+- current status of each TODO (also categorized according to importance) are represented on _Trello_ board https://trello.com/b/HvzY3tKq/ox-game[here]
