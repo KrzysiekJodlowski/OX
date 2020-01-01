@@ -6,51 +6,42 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * At this moment App purpose is to
+ * serve as board generator.
+ * Implementation of this
+ * class will change and should
+ * not be concerned when reviewing.
+ *
  * @author KrzysiekJodlowski
  */
 final class App {
 
     /**
-     * Private according to checkstyle.
+     * Checks if there is any custom input and then creates
+     * game board representation for each case from that file.
+     *
+     * @param args file with custom input (expecting file content as first parameter)
      */
-    private App() {
-
-    }
-
-    /**
-     * In this iteration App checks if there
-     * is any custom input and then creates
-     * game board representation for each case
-     * from that file. Implementation of this
-     * method will change and should not be
-     * concerned when reviewing.
-     * @param args file with custom input
-     * @throws FileNotFoundException when there
-     * is no such file parameter is too big
-     */
-    public static void main(final String[] args)
-            throws FileNotFoundException {
+    public static void main(final String[] args) throws NumberLowerThanOneException {
         Board board;
         int boardSize = 3;
-        BoardPrinter boardPrinter = new BoardPrinter(boardSize);
 
-        if (args.length == 1) {
-            Scanner scanner = new Scanner(
-                    new FileInputStream(new File(args[0]))
-            );
-            while (scanner.hasNextInt()) {
-                boardSize = scanner.nextInt();
-                board = new Board(boardSize);
-                boardPrinter = new BoardPrinter(boardSize);
-                System.out.println(
-                        boardPrinter.getBoardRepresentation(board)
+        if (args.length > 0) {
+            try {
+                Scanner scanner = new Scanner(
+                        new FileInputStream(new File(args[0]))
                 );
+                while (scanner.hasNextInt()) {
+                    boardSize = scanner.nextInt();
+                    board = new Board(boardSize);
+                    System.out.println(board);
+                };
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found!");
             }
         } else {
             board = new Board(boardSize);
-            System.out.println(
-                    boardPrinter.getBoardRepresentation(board)
-            );
+            System.out.println(board);
         }
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>com.github.krzysiekjodlowski</groupId>
     <artifactId>ox</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>OX</name>
     <description>Tic-tac-toe</description>
     <url>github.com/KrzysiekJodlowski/OX</url>
@@ -24,7 +24,7 @@
         <maven.resources.encoding>${project.build.sourceEncoding}</maven.resources.encoding>
         <version.maven>3.6.0</version.maven>
         <!-- dependency versions should go here, so below they can be omitted -->
-        <version.dependency.testng>7.0.0</version.dependency.testng>
+        <version.dependency.testng>7.1.0</version.dependency.testng>
         <version.dependency.mockito>3.2.4</version.dependency.mockito>
         <!-- plugin versions should go here, so below they can be omitted -->
         <version.plugin.maven.enforcer>3.0.0-M2</version.plugin.maven.enforcer>
@@ -138,23 +138,26 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
-    </build>
-
-    <reporting>
-        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${version.plugin.maven.checkstyle}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 </project>
