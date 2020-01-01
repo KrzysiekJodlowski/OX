@@ -1,5 +1,6 @@
 package com.github.krzysiekjodlowski.ox;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -11,14 +12,16 @@ import java.util.Scanner;
  */
 class ConsoleUI implements UI<String, Integer> {
     private final Scanner scanner;
+    private final PrintStream printStream;
 
-    ConsoleUI(Scanner scanner) {
+    ConsoleUI(Scanner scanner, PrintStream ps) {
         this.scanner = scanner;
+        this.printStream = ps;
     }
 
     @Override
     public void say(String message) {
-        System.out.println(message);
+        this.printStream.println(message);
     }
 
     @Override

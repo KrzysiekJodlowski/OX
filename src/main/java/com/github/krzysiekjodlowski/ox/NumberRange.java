@@ -11,19 +11,30 @@ import java.util.Comparator;
 class NumberRange<Number> {
     private final Number minimalValue;
     private final Number maximumValue;
-    private final NumberComparator numberComparator
-            = new NumberComparator();
-    private final int comparisonEquality = 0;
+    private static final int COMPARISON_EQUALITY = 0;
 
-    NumberRange(Number minimalValue, Number maximumValue) {
-        if (this.numberComparator.compare(minimalValue, maximumValue)
-                > this.comparisonEquality) {
-            this.minimalValue = maximumValue;
-            this.maximumValue = minimalValue;
+    private NumberRange(Number minimalValue, Number maximumValue) {
+        this.minimalValue = minimalValue;
+        this.maximumValue = maximumValue;
+    }
+
+    /**
+     * Static fabric method checking input order
+     * and returning new NumberRange with properly
+     * set values.
+     *
+     * @param minimalValue alleged lower bound of range
+     * @param maximumValue alleged upper bound of range
+     * @return new NumberRange object
+     */
+    static <Number> NumberRange of(Number minimalValue, Number maximumValue) {
+        if (compare(minimalValue, maximumValue)
+                > COMPARISON_EQUALITY) {
+            return new NumberRange(maximumValue, minimalValue);
         } else {
-            this.minimalValue = minimalValue;
-            this.maximumValue = maximumValue;
+            return new NumberRange(minimalValue, maximumValue);
         }
+
     }
 
     /**
@@ -33,17 +44,13 @@ class NumberRange<Number> {
      * @return true if value is in range, false otherwise
      */
     boolean numberInRange(Number value) {
-        return this.numberComparator.compare(minimalValue, value)
-                <= this.comparisonEquality
-                && this.numberComparator.compare(maximumValue, value)
-                >= this.comparisonEquality;
+        return this.compare(minimalValue, value)
+                <= COMPARISON_EQUALITY
+                && this.compare(maximumValue, value)
+                >= COMPARISON_EQUALITY;
     }
 
-    private class NumberComparator implements Comparator<Number> {
-
-        public int compare(Number a, Number b) {
-            return new BigDecimal(a.toString()).compareTo(new BigDecimal(b.toString()));
-        }
-
+    static <Number> int compare(Number a, Number b) {
+        return new BigDecimal(a.toString()).compareTo(new BigDecimal(b.toString()));
     }
 }

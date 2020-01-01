@@ -6,7 +6,7 @@
 
     <groupId>com.github.krzysiekjodlowski</groupId>
     <artifactId>ox</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>OX</name>
     <description>Tic-tac-toe</description>
     <url>github.com/KrzysiekJodlowski/OX</url>
