@@ -49,7 +49,7 @@ public class NumberRangeTest {
     @Test(dataProvider = "rangeBoundsAndNumbersInThatRange")
     public void testIfTrueWhenNumbersInRange(int lowerBound, int upperBound, int numberToCheck) {
         // arrange
-        NumberRange<Integer> numberRange = new NumberRange<>(lowerBound, upperBound);
+        NumberRange<Integer> numberRange = NumberRange.of(lowerBound, upperBound);
 
         // act
         boolean result = numberRange.numberInRange(numberToCheck);
@@ -61,7 +61,7 @@ public class NumberRangeTest {
     @Test(dataProvider = "rangeBoundsAndNumbersOutOfThatRange")
     public void testIfFalseWhenNumbersOutOfRange(int lowerBound, int upperBound, int numberToCheck) {
         // arrange
-        NumberRange<Integer> numberRange = new NumberRange<>(lowerBound, upperBound);
+        NumberRange<Integer> numberRange = NumberRange.of(lowerBound, upperBound);
 
         // act
         boolean result = numberRange.numberInRange(numberToCheck);

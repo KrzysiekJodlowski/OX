@@ -3,6 +3,8 @@ package com.github.krzysiekjodlowski.ox;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.testng.Assert.assertEquals;
@@ -12,20 +14,20 @@ public class ConsoleUITest {
     @DataProvider
     public static Object[][] arbitraryNumbersInputWithinTheRange() {
         return new Object[][]{
-                {"1", new NumberRange<>(1, 1)}
-                , {"1", new NumberRange<>(0, 1)}
-                , {"1", new NumberRange<>(1, 2)}
-                , {"1", new NumberRange<>(0, 2)}
+                {"1", NumberRange.of(1, 1)}
+                , {"1", NumberRange.of(0, 1)}
+                , {"1", NumberRange.of(1, 2)}
+                , {"1", NumberRange.of(0, 2)}
         };
     }
 
     @DataProvider
     public static Object[][] arbitraryNumbersInputNotInTheRange() {
         return new Object[][]{
-                {"1", new NumberRange<>(-1, 0)}
-                , {"1", new NumberRange<>(0, 0)}
-                , {"1", new NumberRange<>(2, 2)}
-                , {"1", new NumberRange<>(2, 3)}
+                {"1", NumberRange.of(-1, 0)}
+                , {"1", NumberRange.of(0, 0)}
+                , {"1", NumberRange.of(2, 2)}
+                , {"1", NumberRange.of(2, 3)}
         };
     }
 
@@ -35,7 +37,7 @@ public class ConsoleUITest {
             throws NumberOutOfRangeException {
         //arrange
         Scanner scanner = new Scanner(input);
-        UI<String, Integer> consoleUI = new ConsoleUI(scanner);
+        UI<String, Integer> consoleUI = new ConsoleUI(scanner, new PrintStream(System.out));
         Integer expected = Integer.valueOf(input);
 
         //act
@@ -52,7 +54,7 @@ public class ConsoleUITest {
             throws NumberOutOfRangeException {
         //arrange
         Scanner scanner = new Scanner(input);
-        UI<String, Integer> consoleUI = new ConsoleUI(scanner);
+        UI<String, Integer> consoleUI = new ConsoleUI(scanner, new PrintStream(System.out));
 
         //act
         consoleUI.getNumberFromUser(numberRange);

@@ -27,18 +27,17 @@ final class App {
         int boardSize = 3;
 
         if (args.length > 0) {
-            Scanner scanner = null;
             try {
-                scanner = new Scanner(
+                Scanner scanner = new Scanner(
                         new FileInputStream(new File(args[0]))
                 );
+                while (scanner.hasNextInt()) {
+                    boardSize = scanner.nextInt();
+                    board = new Board(boardSize);
+                    System.out.println(board);
+                };
             } catch (FileNotFoundException e) {
                 System.out.println("File not found!");
-            }
-            while (scanner != null && scanner.hasNextInt()) {
-                boardSize = scanner.nextInt();
-                board = new Board(boardSize);
-                System.out.println(board);
             }
         } else {
             board = new Board(boardSize);
