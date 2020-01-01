@@ -10,4 +10,11 @@ To run project you have to use:
 * jdk version 11+
 * maven version 3.6.0+
 
-To build project simply run _"mvn package"_ command, to make it work run _"java -jar target/OX-0.1.jar"_
+To run project:
+
+- without any custom input run _"standard"_ script
+- project with provided custom input run _"custom"_ script
+- running script from command line by typing eg: *_./custom.sh (custom_board_sizes.input)_*
+- if you can't run a script first execute command like: *_chmod 755 custom.sh_*
+
+
