@@ -7,12 +7,12 @@ import java.math.BigDecimal;
  *
  * @author Krzysztof Jodlowski
  */
-class NumberRange<Number> {
-  private final Number minimalValue;
-  private final Number maximumValue;
+class NumberRange<T> {
+  private final T minimalValue;
+  private final T maximumValue;
   private static final int COMPARISON_EQUALITY = 0;
 
-  private NumberRange(Number minimalValue, Number maximumValue) {
+  private NumberRange(T minimalValue, T maximumValue) {
     this.minimalValue = minimalValue;
     this.maximumValue = maximumValue;
   }
@@ -26,7 +26,7 @@ class NumberRange<Number> {
    * @param maximumValue alleged upper bound of range
    * @return new NumberRange object
    */
-  static <Number> NumberRange of(Number minimalValue, Number maximumValue) {
+  static <T> NumberRange of(T minimalValue, T maximumValue) {
     if (compare(minimalValue, maximumValue)
         > COMPARISON_EQUALITY) {
       return new NumberRange(maximumValue, minimalValue);
@@ -42,7 +42,7 @@ class NumberRange<Number> {
    * @param value concrete Number value to check
    * @return true if value is in range, false otherwise
    */
-  boolean numberInRange(Number value) {
+  boolean numberInRange(T value) {
     return this.compare(minimalValue, value)
         <= COMPARISON_EQUALITY
         && this.compare(maximumValue, value)
@@ -57,7 +57,7 @@ class NumberRange<Number> {
    * @param b second number to compare
    * @return int representing comparison result
    */
-  static <Number> int compare(Number a, Number b) {
+  static <T> int compare(T a, T b) {
     return new BigDecimal(a.toString()).compareTo(new BigDecimal(b.toString()));
   }
 }
