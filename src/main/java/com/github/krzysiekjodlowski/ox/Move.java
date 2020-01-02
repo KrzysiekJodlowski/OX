@@ -26,4 +26,17 @@ class Move implements Event<Move> {
   public Move getData() {
     return this;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Move)) {
+      return false;
+    }
+    Move move = (Move) o;
+    return move.fieldNumber.equals(this.fieldNumber)
+        && move.playersSymbol == this.playersSymbol;
+  }
 }

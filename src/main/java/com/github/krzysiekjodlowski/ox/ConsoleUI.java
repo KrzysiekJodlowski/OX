@@ -37,20 +37,18 @@ class ConsoleUI implements UI<String, Integer> {
   @Override
   public Integer getNumberFromUser(NumberRange<Integer> range) {
     boolean correctInput = false;
-    Integer input = 0;
+    int input = 0;
 
     do {
       try {
         String tempInput = this.scanner.nextLine();
         input = Integer.parseInt(tempInput.split(" ")[0]);
-      } catch (InputMismatchException e) {
+      } catch (NumberFormatException e) {
         this.printStream.println("Provided input is not a number!");
-        this.scanner.next();
         continue;
       }
       if (!range.numberInRange(input)) {
         this.printStream.println("Provided number is out of range!");
-        continue;
       } else {
         correctInput = true;
       }

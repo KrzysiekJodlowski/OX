@@ -26,12 +26,12 @@ class NumberRange<T> {
    * @param maximumValue alleged upper bound of range
    * @return new NumberRange object
    */
-  static <T> NumberRange of(T minimalValue, T maximumValue) {
+  static <T> NumberRange<T> of(T minimalValue, T maximumValue) {
     if (compare(minimalValue, maximumValue)
         > COMPARISON_EQUALITY) {
-      return new NumberRange(maximumValue, minimalValue);
+      return new NumberRange<>(maximumValue, minimalValue);
     } else {
-      return new NumberRange(minimalValue, maximumValue);
+      return new NumberRange<>(minimalValue, maximumValue);
     }
 
   }

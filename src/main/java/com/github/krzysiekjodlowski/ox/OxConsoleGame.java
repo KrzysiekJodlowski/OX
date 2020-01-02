@@ -33,17 +33,18 @@ class OxConsoleGame implements Game {
     do {
       currentPlayer = this.players.getCurrentPlayer();
       this.showPlayerBoardAndActionMessage(currentPlayer, board);
-      Move playersMove;
+      Move playersMove = null;
       try {
         playersMove = currentPlayer.makeMove(this.ui);
-        if (board.containsField(playersMove)) {
-          this.ui.say("This one is marked! Choose another one.");
-          continue;
-        }
-        this.oxGameEventBus.dispatch(playersMove);
+
       } catch (NumberFormatException | NumberLowerThanOneException e) {
         this.ui.say(e.getMessage());
       }
+      if (playersMove != null && board.containsField(playersMove)) {
+        this.ui.say("This one is marked! Choose another one.");
+        continue;
+      }
+      this.oxGameEventBus.dispatch(playersMove);
     } while (!this.gameVerifier.saysItsOver());
     this.showBoardAndSayItsOver(board);
   }
