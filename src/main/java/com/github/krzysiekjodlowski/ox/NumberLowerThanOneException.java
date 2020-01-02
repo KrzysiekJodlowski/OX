@@ -7,7 +7,7 @@ package com.github.krzysiekjodlowski.ox;
  * @author Krzysztof Jodlowski
  */
 class NumberLowerThanOneException extends Exception {
-    NumberLowerThanOneException() {
-        super("Provided number is lower than one!");
-    }
+  NumberLowerThanOneException() {
+    super("Provided number is lower than one!");
+  }
 }

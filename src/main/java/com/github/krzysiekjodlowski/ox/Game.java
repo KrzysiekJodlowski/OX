@@ -3,8 +3,8 @@ package com.github.krzysiekjodlowski.ox;
 /**
  * Generalized contract for running game-related units.
  *
- * @author KrzysiekJodlowski
+ * @author Krzysztof Jodlowski
  */
 interface Game {
-    void run();
+  void run();
 }
