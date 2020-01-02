@@ -1,4 +1,4 @@
 #!/bin/bash
 
 mvn clean package
-java -jar target/ox-0.1.jar $1
+java -jar target/ox-0.2.jar $1

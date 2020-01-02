@@ -36,7 +36,7 @@ public class BoardTest {
         Board board = new Board(3);
 
         //act
-        board.markField(fieldNumber, symbol);
+        board.markField(new Move(fieldNumber, symbol));
 
         //assert
         assertEquals(board.toString(), boardRepresentation);

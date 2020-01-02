@@ -21,5 +21,5 @@ interface UI<T1, T2 extends Number> {
      * @param range custom Number type
      * @return custom Number type
      */
-    T2 getNumberFromUser(NumberRange<T2> range) throws NumberOutOfRangeException;
+    T2 getNumberFromUser(NumberRange<T2> range);
 }

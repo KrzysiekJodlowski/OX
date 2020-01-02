@@ -3,45 +3,45 @@ package com.github.krzysiekjodlowski.ox;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * At this moment App purpose is to
- * serve as board generator.
- * Implementation of this
- * class will change and should
- * not be concerned when reviewing.
+ * Main entry to OX program. Runs the game with automated file input or user console input;
  *
  * @author KrzysiekJodlowski
  */
 final class App {
 
     /**
-     * Checks if there is any custom input and then creates
-     * game board representation for each case from that file.
+     * Creating Game and runs it. First it hecks if there is any custom input file and
+     * if there is it passes FileInputStream to Scanner object, if not, System.in.
      *
      * @param args file with custom input (expecting file content as first parameter)
      */
-    public static void main(final String[] args) throws NumberLowerThanOneException {
-        Board board;
-        int boardSize = 3;
+    public static void main(final String[] args) {
+        Scanner scanner = setScanner(args);
+        // in the future releases (when more UI implementations will appear) another
+        // helper method checking UI chosen type will initialize the interface
+        UI<String, Integer> ui = new ConsoleUI(scanner, new PrintStream(System.out));
+        Game game = new OXConsoleGame(ui);
+        game.run();
+    }
 
+    private static Scanner setScanner(String[] args) {
+        Scanner scanner = null;
         if (args.length > 0) {
             try {
-                Scanner scanner = new Scanner(
+                scanner = new Scanner(
                         new FileInputStream(new File(args[0]))
                 );
-                while (scanner.hasNextInt()) {
-                    boardSize = scanner.nextInt();
-                    board = new Board(boardSize);
-                    System.out.println(board);
-                };
             } catch (FileNotFoundException e) {
                 System.out.println("File not found!");
             }
         } else {
-            board = new Board(boardSize);
-            System.out.println(board);
+            scanner = new Scanner(System.in);
         }
+        return scanner;
     }
 }
+

@@ -1,6 +1,7 @@
 package com.github.krzysiekjodlowski.ox;
 
 import java.io.PrintStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -25,11 +26,25 @@ class ConsoleUI implements UI<String, Integer> {
     }
 
     @Override
-    public Integer getNumberFromUser(NumberRange<Integer> range) throws NumberOutOfRangeException {
-        Integer input = this.scanner.nextInt();
-        if (range.numberInRange(input)) {
-            return input;
-        }
-        throw new NumberOutOfRangeException(input);
+    public Integer getNumberFromUser(NumberRange<Integer> range) {
+        boolean correctInput = false;
+        Integer input = 0;
+
+        do {
+            try {
+                input = this.scanner.nextInt();
+            } catch (InputMismatchException e) {
+                this.printStream.println("Provided input is not a number!");
+                this.scanner.next();
+                continue;
+            }
+            if (!range.numberInRange(input)) {
+                this.printStream.println("Provided number is out of range!");
+                continue;
+            } else {
+                correctInput = true;
+            }
+        } while (!correctInput);
+    return input;
     }
 }

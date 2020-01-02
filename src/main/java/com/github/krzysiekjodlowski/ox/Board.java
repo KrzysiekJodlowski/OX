@@ -9,31 +9,37 @@ import java.util.Map;
  *
  * @author KrzysiekJodlowski
  */
-class Board {
-    private final int boardCapacity;
+class Board implements Subscribable {
     private final Map<FieldNumber, Symbol> fields = new HashMap<>();
     private final int boardSideLength;
+    private final int boardCapacity;
 
     Board(final int boardSideLength) {
-        // Condition which should be checked in user interface
-        if (boardSideLength < 3 || boardSideLength > 40) {
-            System.out.println("Board capacity should be between 3 and 40! "
-                    + "Default capacity of 3 will be used instead.");
-            this.boardSideLength = 3;
-        } else {
-            this.boardSideLength = boardSideLength;
-        }
-        this.boardCapacity = boardSideLength * boardSideLength;
+        this.boardSideLength = boardSideLength;
+        this.boardCapacity = this.boardSideLength * this.boardSideLength;
+    }
+
+    /**
+     *
+     *
+     * @param
+     */
+    @Override
+    public void handle(Event<?> event) {
+        this.markField((Move) event);
     }
 
     /**
      * Mark fields in game board.
      *
-     * @param fieldNumber represents number choose by player
-     * @param symbol      represents player symbol
+     * @param playersMove
      */
-    void markField(final FieldNumber fieldNumber, final Symbol symbol) {
-        this.fields.put(fieldNumber, symbol);
+    void markField(Move playersMove) {
+        this.fields.put(playersMove.getFieldNumber(), playersMove.getPlayersSymbol());
+    }
+
+    boolean containsField(Move playersMove) {
+        return this.fields.containsKey(playersMove.getFieldNumber());
     }
 
     /**
@@ -51,7 +57,7 @@ class Board {
             try {
                 currentFieldNumber = FieldNumber.valueOf(i);
             } catch (NumberLowerThanOneException e) {
-                e.printStackTrace();
+                // nothing to swallow!
             }
             stringBuilder.append(
                     !this.getMarkedField(currentFieldNumber)
