@@ -5,7 +5,7 @@ package com.github.krzysiekjodlowski.ox;
  *
  * @author Krzysztof Jodlowski
  */
-interface EventBus {
+public interface EventBus {
   /**
    * Registers a new subscriber to this EventBus instance.
    *

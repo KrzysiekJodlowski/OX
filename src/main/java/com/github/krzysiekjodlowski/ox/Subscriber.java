@@ -5,7 +5,7 @@ package com.github.krzysiekjodlowski.ox;
  *
  * @author Krzysztof Jodlowski
  */
-interface Subscriber {
+public interface Subscriber {
   /**
    * Consume the events dispatched by the bus.
    */

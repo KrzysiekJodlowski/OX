@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author Krzysztof Jodlowski
  */
-class NumberRange<T> {
+public class NumberRange<T> {
   private final T minimalValue;
   private final T maximumValue;
   private static final int COMPARISON_EQUALITY = 0;
@@ -26,7 +26,7 @@ class NumberRange<T> {
    * @param maximumValue alleged upper bound of range
    * @return new NumberRange object
    */
-  static <T> NumberRange<T> of(T minimalValue, T maximumValue) {
+  public static <T> NumberRange<T> of(T minimalValue, T maximumValue) {
     if (compare(minimalValue, maximumValue)
         > COMPARISON_EQUALITY) {
       return new NumberRange<>(maximumValue, minimalValue);
@@ -42,10 +42,10 @@ class NumberRange<T> {
    * @param value concrete Number value to check
    * @return true if value is in range, false otherwise
    */
-  boolean numberInRange(T value) {
-    return this.compare(minimalValue, value)
+  public boolean numberInRange(T value) {
+    return compare(minimalValue, value)
         <= COMPARISON_EQUALITY
-        && this.compare(maximumValue, value)
+        && compare(maximumValue, value)
         >= COMPARISON_EQUALITY;
   }
 

@@ -1,11 +1,14 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+
 /**
  * Player move representation as Event.
  *
  * @author Krzysztof Jodlowski
  */
-class Move implements Event<Move> {
+public class Move implements Event<Move> {
   private final FieldNumber fieldNumber;
   private final Symbol playersSymbol;
 
@@ -14,11 +17,11 @@ class Move implements Event<Move> {
     this.playersSymbol = playersSymbol;
   }
 
-  FieldNumber getFieldNumber() {
+  public FieldNumber getFieldNumber() {
     return this.fieldNumber;
   }
 
-  Symbol getPlayersSymbol() {
+  public Symbol getPlayersSymbol() {
     return this.playersSymbol;
   }
 

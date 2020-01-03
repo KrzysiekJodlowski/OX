@@ -1,5 +1,7 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+
 /**
  * Container for two players, used
  * mainly for managing their turns.

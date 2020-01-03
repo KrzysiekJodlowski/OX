@@ -1,11 +1,11 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.model;
 
 /**
  * Represents each player on Board.
  *
  * @author Krzysztof Jodlowski
  */
-enum Symbol {
+public enum Symbol {
   NAUGHT("O"), CROSS("X"), EMPTY(" ");
 
   private final String value;

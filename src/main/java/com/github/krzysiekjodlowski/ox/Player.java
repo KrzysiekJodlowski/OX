@@ -1,5 +1,8 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+import com.github.krzysiekjodlowski.ox.ui.UI;
+
 /**
  * Base for any player. Each one descendant
  * will have to implement its own version

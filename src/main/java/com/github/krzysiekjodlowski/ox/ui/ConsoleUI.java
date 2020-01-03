@@ -1,7 +1,8 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.ui;
+
+import com.github.krzysiekjodlowski.ox.NumberRange;
 
 import java.io.PrintStream;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,11 +10,11 @@ import java.util.Scanner;
  *
  * @author Krzysztof Jodlowski
  */
-class ConsoleUI implements UI<String, Integer> {
+public class ConsoleUI implements UI<String, Integer> {
   private final Scanner scanner;
   private final PrintStream printStream;
 
-  ConsoleUI(Scanner scanner, PrintStream ps) {
+  public ConsoleUI(Scanner scanner, PrintStream ps) {
     this.scanner = scanner;
     this.printStream = ps;
   }
@@ -44,7 +45,7 @@ class ConsoleUI implements UI<String, Integer> {
         String tempInput = this.scanner.nextLine();
         input = Integer.parseInt(tempInput.split(" ")[0]);
       } catch (NumberFormatException e) {
-        this.printStream.println("Provided input is not a number!");
+        this.printStream.println("Provided input is not a required number!");
         continue;
       }
       if (!range.numberInRange(input)) {
@@ -54,5 +55,15 @@ class ConsoleUI implements UI<String, Integer> {
       }
     } while (!correctInput);
     return input;
+  }
+
+  /**
+   * ${@inheritDoc}
+   * Console version.
+   */
+  @Override
+  public void clear() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 }

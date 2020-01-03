@@ -1,5 +1,7 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.board.BoardValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  * @author Krzysztof Jodlowski
  */
 class OxGameEventBus implements EventBus {
+
   private final List<Subscriber> subscribers = new ArrayList<>();
 
   /**

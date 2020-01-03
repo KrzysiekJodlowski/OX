@@ -6,7 +6,7 @@ package com.github.krzysiekjodlowski.ox;
  *
  * @author Krzysztof Jodlowski
  */
-interface Event<T> {
+public interface Event<T> {
   /**
    * Returns the stored data associated with the event.
    *

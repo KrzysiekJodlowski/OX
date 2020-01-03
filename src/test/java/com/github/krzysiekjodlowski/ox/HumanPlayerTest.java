@@ -1,5 +1,8 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+import com.github.krzysiekjodlowski.ox.ui.ConsoleUI;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

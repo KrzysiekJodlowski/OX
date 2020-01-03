@@ -1,9 +1,10 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.ui.ConsoleUI;
+import com.github.krzysiekjodlowski.ox.ui.UI;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 

@@ -1,11 +1,13 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.model;
+
+import com.github.krzysiekjodlowski.ox.NumberLowerThanOneException;
 
 /**
  * Represents place on a game board chosen by player.
  *
  * @author Krzysztof Jodlowski
  */
-class FieldNumber {
+public class FieldNumber {
   private final int value;
   private static final int MIN_VALUE = 1;
 
@@ -21,7 +23,8 @@ class FieldNumber {
    * @throws NumberFormatException       when can't be converted to int
    * @throws NumberLowerThanOneException when input lower than MIN_VALUE
    */
-  static FieldNumber from(String s) throws NumberFormatException, NumberLowerThanOneException {
+  public static FieldNumber from(String s)
+      throws NumberFormatException, NumberLowerThanOneException {
     int input = Integer.parseInt(s);
     return valueOf(input);
   }
@@ -33,11 +36,15 @@ class FieldNumber {
    * @return FieldNumber representation
    * @throws NumberLowerThanOneException when input lower than MIN_VALUE
    */
-  static FieldNumber valueOf(int i) throws NumberLowerThanOneException {
+  public static FieldNumber valueOf(int i) throws NumberLowerThanOneException {
     if (i < MIN_VALUE) {
       throw new NumberLowerThanOneException();
     }
     return new FieldNumber(i);
+  }
+
+  public int getValue() {
+    return this.value;
   }
 
   @Override

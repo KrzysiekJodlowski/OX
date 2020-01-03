@@ -1,4 +1,8 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.board;
+
+import com.github.krzysiekjodlowski.ox.*;
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,12 +13,12 @@ import java.util.Map;
  *
  * @author Krzysztof Jodlowski
  */
-class Board implements Subscriber {
+public class Board implements Subscriber {
   private final Map<FieldNumber, Symbol> fields = new HashMap<>();
   private final int boardSideLength;
   private final int boardCapacity;
 
-  Board(final int boardSideLength) {
+  public Board(final int boardSideLength) {
     this.boardSideLength = boardSideLength;
     this.boardCapacity = this.boardSideLength * this.boardSideLength;
   }
@@ -36,8 +40,20 @@ class Board implements Subscriber {
    * @param playersMove move made by player
    * @return true if field is already marked, false otherwise
    */
-  boolean containsField(Move playersMove) {
+  public boolean containsField(Move playersMove) {
     return this.fields.containsKey(playersMove.getFieldNumber());
+  }
+
+  int getBoardSideLength() {
+    return this.boardSideLength;
+  }
+
+  int getBoardCapacity() {
+    return this.boardCapacity;
+  }
+
+  Map<FieldNumber, Symbol> getFields() {
+    return this.fields;
   }
 
   /**

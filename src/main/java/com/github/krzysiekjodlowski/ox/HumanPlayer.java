@@ -1,5 +1,9 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+import com.github.krzysiekjodlowski.ox.ui.UI;
+
 /**
  * ${@inheritDoc} Human version.
  *

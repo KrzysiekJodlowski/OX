@@ -1,5 +1,8 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
+
 class BoardTestDataProviders {
 
     Object[][] sizesFrom3UpTo10WithRepresentations() {

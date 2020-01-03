@@ -1,4 +1,6 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.ui;
+
+import com.github.krzysiekjodlowski.ox.NumberRange;
 
 /**
  * Interacting directly with user,
@@ -7,7 +9,7 @@ package com.github.krzysiekjodlowski.ox;
  *
  * @author Krzysztof Jodlowski
  */
-interface UI<T1, T2 extends Number> {
+public interface UI<T1, T2 extends Number> {
   /**
    * Outputs message to user.
    *
@@ -22,4 +24,9 @@ interface UI<T1, T2 extends Number> {
    * @return custom Number type
    */
   T2 getNumberFromUser(NumberRange<T2> range);
+
+  /**
+   * Refreshes user interface.
+   */
+  void clear();
 }
