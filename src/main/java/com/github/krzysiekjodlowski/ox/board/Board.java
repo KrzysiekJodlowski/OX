@@ -52,8 +52,8 @@ public class Board implements Subscriber {
     return this.boardCapacity;
   }
 
-  Map<FieldNumber, Symbol> getFields() {
-    return this.fields;
+  Symbol getSymbol(FieldNumber fieldNumber) {
+    return this.fields.get(fieldNumber);
   }
 
   /**

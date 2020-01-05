@@ -51,7 +51,8 @@ class VerticalChecker implements LineChecker {
 
   private boolean checkIfThereIsAnother(int potentialField, Move playersMove) throws NumberLowerThanOneException {
     return potentialField <= this.board.getBoardCapacity()
-        && this.board.containsField(new Move(FieldNumber.valueOf(potentialField), playersMove.getPlayersSymbol()));
+        && this.board.containsField(new Move(FieldNumber.valueOf(potentialField), playersMove.getPlayersSymbol()))
+        && this.board.getSymbol(FieldNumber.valueOf(potentialField)).equals(playersMove.getPlayersSymbol());
   }
 }
 

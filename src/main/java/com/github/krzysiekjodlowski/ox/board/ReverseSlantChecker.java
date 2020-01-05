@@ -52,6 +52,7 @@ class ReverseSlantChecker implements LineChecker {
   private boolean checkIfThereIsAnother(int currentField, int nextField, Move playersMove) throws NumberLowerThanOneException {
     return (currentField % this.board.getBoardSideLength() != 0)
         && nextField <= this.board.getBoardCapacity()
-        && this.board.containsField(new Move(FieldNumber.valueOf(nextField), playersMove.getPlayersSymbol()));
+        && this.board.containsField(new Move(FieldNumber.valueOf(nextField), playersMove.getPlayersSymbol()))
+        && this.board.getSymbol(FieldNumber.valueOf(nextField)).equals(playersMove.getPlayersSymbol());
   }
 }
