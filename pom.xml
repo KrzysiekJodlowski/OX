@@ -22,7 +22,7 @@
         <!-- see source for the plugins to verify if those can be skipped, they should IIRC -->
         <maven.compiler.encoding>${project.build.sourceEncoding}</maven.compiler.encoding>
         <maven.resources.encoding>${project.build.sourceEncoding}</maven.resources.encoding>
-        <version.maven>3.6.2</version.maven>
+        <version.maven>3.6.0</version.maven>
         <!-- dependency versions should go here, so below they can be omitted -->
         <version.dependency.testng>7.1.0</version.dependency.testng>
         <version.dependency.mockito>3.2.4</version.dependency.mockito>

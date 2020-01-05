@@ -8,73 +8,40 @@ import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 import com.github.krzysiekjodlowski.ox.model.Symbol;
 
 /**
- * Verifies if game should end.
- * ATTENTION - represents the absolute
- * minimum implementation that will
- * be changed in the future!
+ * Verifies if any player wins after his move.
  *
  * @author Krzysztof Jodlowski
  */
 public class BoardValidator implements Subscriber {
-  private Board board;
-  private int winCondition;
   private boolean isGameOver = false;
   private Symbol winner = Symbol.EMPTY;
+  private HorizontalChecker horizontalChecker;
+  private VerticalChecker verticalChecker;
+  private SlantChecker slantChecker;
+  private ReverseSlantChecker reverseSlantChecker;
 
   public BoardValidator(Board board, int winCondition) {
-    this.board = board;
-    this.winCondition = winCondition;
+    this.horizontalChecker = new HorizontalChecker(board, winCondition);
+    this.verticalChecker = new VerticalChecker(board, winCondition);
+    this.slantChecker = new SlantChecker(board, winCondition);
+    this.reverseSlantChecker = new ReverseSlantChecker(board, winCondition);
   }
 
   /**
-   * Checks board fullness.
+   * Checks all possible win combinations according to players move.
    *
    * @param event dispatched by EventBus.
    */
   @Override
   public void handle(Event<?> event) {
     Move playersMove = (Move) event;
-    this.isGameOver = this.checkIfHorizontalToLeft(playersMove);
-  }
-
-  private boolean checkIfHorizontalToLeft(Move playersMove) {
-    int current = playersMove.getFieldNumber().getValue();
-
-    int x = this.winCondition;
-    int found = 0;
-    boolean checkLeft = true;
-    boolean checkRight = true;
-
-    for (int i = 0; i < x; i++) {
-      try {
-        if (checkLeft && this.board.containsField(new Move(FieldNumber.valueOf(current - i), playersMove.getPlayersSymbol()))) {
-          found += 1;
-        } else {
-          checkLeft = false;
-        }
-      } catch (NumberLowerThanOneException e) {
-        checkLeft = false;
-      }
-      try {
-        if (checkRight && this.board.containsField(new Move(FieldNumber.valueOf(current + i), playersMove.getPlayersSymbol()))) {
-          found += 1;
-        } else {
-          checkRight = false;
-        }
-      } catch (NumberLowerThanOneException e) {
-        checkRight = false;
-      }
-      if (!checkLeft && !checkRight) {
-        return false;
-      }
-    }
-    System.out.println(playersMove.getFieldNumber());
-    System.out.println(found);
-    boolean isOver = found >= this.winCondition - 1;
-    if (isOver) {
+    this.isGameOver = this.horizontalChecker.checkLine(playersMove)
+            || this.verticalChecker.checkLine(playersMove)
+            || this.slantChecker.checkLine(playersMove)
+            || this.reverseSlantChecker.checkLine(playersMove);
+    if (this.isGameOver) {
       this.winner = playersMove.getPlayersSymbol();
     }
-    return isOver;
   }
 
   public boolean saysItsOver() {
