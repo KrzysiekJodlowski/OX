@@ -37,11 +37,15 @@ public class Board implements Subscriber {
   /**
    * Used for checking field existence.
    *
-   * @param playersMove move made by player
+   * @param fieldNumber field number
    * @return true if field is already marked, false otherwise
    */
-  public boolean containsField(Move playersMove) {
-    return this.fields.containsKey(playersMove.getFieldNumber());
+//  public boolean containsField(FieldNumber fieldNumber) {
+//    return this.fields.containsKey(fieldNumber);
+//  }
+
+  public boolean containsField(FieldNumber fieldNumber) {
+    return this.fields.containsKey(fieldNumber);
   }
 
   int getBoardSideLength() {
@@ -51,6 +55,8 @@ public class Board implements Subscriber {
   int getBoardCapacity() {
     return this.boardCapacity;
   }
+
+  int getBoardFulfillment() { return this.fields.size(); }
 
   Symbol getSymbol(FieldNumber fieldNumber) {
     return this.fields.get(fieldNumber);

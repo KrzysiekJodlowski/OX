@@ -1,6 +1,7 @@
 package com.github.krzysiekjodlowski.ox;
 
 import com.github.krzysiekjodlowski.ox.board.Board;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
 import com.github.krzysiekjodlowski.ox.ui.UI;
 import com.github.krzysiekjodlowski.ox.board.BoardValidator;
 
@@ -44,7 +45,7 @@ class OxConsoleGame implements Game {
       } catch (NumberFormatException | NumberLowerThanOneException e) {
         this.ui.say(e.getMessage());
       }
-      if (playersMove != null && board.containsField(playersMove)) {
+      if (playersMove != null && board.containsField(playersMove.getFieldNumber())) {
         this.ui.say("This one is marked! Choose another one.");
         continue;
       }
@@ -68,7 +69,11 @@ class OxConsoleGame implements Game {
   private void showBoardAndSayItsOver(Board board, BoardValidator boardValidator) {
     this.ui.say(board.toString());
     this.ui.say("Demo 'game' is over!");
-    this.ui.say(String.format("The winner is %s!", boardValidator.getWinner()));
+    if (boardValidator.getWinner().equals(Symbol.EMPTY)) {
+      this.ui.say("It's a draw!");
+    } else {
+      this.ui.say(String.format("The winner is %s!", boardValidator.getWinner()));
+    }
   }
 
   private Board setBoardSideLength() {

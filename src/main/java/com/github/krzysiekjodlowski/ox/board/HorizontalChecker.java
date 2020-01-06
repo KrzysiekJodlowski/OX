@@ -50,7 +50,7 @@ class HorizontalChecker implements LineChecker {
 
   private boolean checkIfThereIsAnother(int potentialCorner, int nextField, Move playersMove) throws NumberLowerThanOneException {
     return ((potentialCorner) % this.board.getBoardSideLength() != 0)
-        && this.board.containsField(new Move(FieldNumber.valueOf(nextField), playersMove.getPlayersSymbol()))
+        && this.board.containsField(FieldNumber.valueOf(nextField))
         && this.board.getSymbol(FieldNumber.valueOf(nextField)).equals(playersMove.getPlayersSymbol());
   }
 }
