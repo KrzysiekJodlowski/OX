@@ -15,6 +15,9 @@ import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertTrue;
 
+/**
+ * ATTENTION - This class need some mocking!
+ */
 public class BoardValidatorHorizontalCheckTest {
 
     @DataProvider

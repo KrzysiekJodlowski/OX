@@ -78,7 +78,7 @@ public class Board implements Subscriber {
       try {
         currentFieldNumber = FieldNumber.valueOf(i);
       } catch (NumberLowerThanOneException e) {
-        // seems like a bad practice but there's nothing to swallow!
+        e.printStackTrace();
       }
       stringBuilder.append(
           !this.getMarkedField(currentFieldNumber)

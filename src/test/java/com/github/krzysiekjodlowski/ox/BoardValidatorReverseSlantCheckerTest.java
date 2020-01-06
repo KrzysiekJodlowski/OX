@@ -9,6 +9,9 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
+/**
+ * ATTENTION - This class need some mocking!
+ */
 public class BoardValidatorReverseSlantCheckerTest {
 
   @DataProvider

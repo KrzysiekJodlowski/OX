@@ -17,7 +17,7 @@ import java.util.Scanner;
 final class App {
 
   /**
-   * Creating Game and runs it. First it checks if there is any custom input file and
+   * Creating Game and runs it. First it checks if there is any input file and
    * if there is it passes FileInputStream to Scanner object, if not, System.in.
    *
    * @param args file with custom input (expecting file content as first parameter)

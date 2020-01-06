@@ -37,9 +37,6 @@ class Players implements Subscriber {
   /**
    * Used to build Players by setting
    * each of them and the starting one.
-   * ATTENTION - functionality of setters
-   * will be used by Settings class
-   * improved in the future!
    *
    * @author Krzysztof Jodlowski
    */

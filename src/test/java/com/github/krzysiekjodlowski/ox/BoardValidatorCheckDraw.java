@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+/**
+ * ATTENTION - This class need some mocking!
+ */
 public class BoardValidatorCheckDraw {
 
   @DataProvider

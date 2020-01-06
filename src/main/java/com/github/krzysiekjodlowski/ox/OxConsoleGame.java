@@ -24,6 +24,7 @@ class OxConsoleGame implements Game {
   /**
    * ATTENTION - Below implementation is temporary!
    * Analogical one will appear in future Round class.
+   * Also all hardcoded Strings will be read from file by Settings.
    */
   @Override
   public void run() {
