@@ -23,6 +23,8 @@ public class BoardValidatorCheckDraw {
             , new Move(FieldNumber.valueOf(6), Symbol.CROSS)
             , new Move(FieldNumber.valueOf(9), Symbol.NAUGHT)
             , new Move(FieldNumber.valueOf(7), Symbol.CROSS)
+            , new Move(FieldNumber.valueOf(3), Symbol.NAUGHT)
+            , new Move(FieldNumber.valueOf(8), Symbol.CROSS)
         }
     };
   }

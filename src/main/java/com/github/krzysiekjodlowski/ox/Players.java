@@ -51,18 +51,9 @@ class Players implements Subscriber {
     public Builder() {
     }
 
-    public Builder playerOne(Player player) {
-      this.playerOne = player;
-      return this;
-    }
-
-    public Builder playerTwo(Player player) {
-      this.playerTwo = player;
-      return this;
-    }
-
-    public Builder starting(Player player) {
-      this.startingPlayer = player;
+    public Builder changeStarting() {
+      this.startingPlayer = this.startingPlayer.equals(this.playerOne)
+          ? this.playerTwo : this.playerOne;
       return this;
     }
 

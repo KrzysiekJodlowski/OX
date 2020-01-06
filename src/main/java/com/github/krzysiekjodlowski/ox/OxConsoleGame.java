@@ -15,11 +15,10 @@ import com.github.krzysiekjodlowski.ox.board.BoardValidator;
 class OxConsoleGame implements Game {
   private final UI<String, Integer> ui;
   private final EventBus oxGameEventBus = new OxGameEventBus();
-  private final Players players = new Players.Builder().build();
+  private Players players = new Players.Builder().build();
 
   OxConsoleGame(UI<String, Integer> ui) {
     this.ui = ui;
-    this.oxGameEventBus.register(this.players);
   }
 
   /**
@@ -28,12 +27,14 @@ class OxConsoleGame implements Game {
    */
   @Override
   public void run() {
-    Player currentPlayer;
     this.welcomePlayers();
     Board board = this.setBoardSideLength();
     BoardValidator boardValidator = new BoardValidator(board, this.setWinCondition());
+    this.setStartingPlayer();
     this.oxGameEventBus.register(board);
     this.oxGameEventBus.register(boardValidator);
+    this.oxGameEventBus.register(this.players);
+    Player currentPlayer;
 
     do {
       currentPlayer = this.players.getCurrentPlayer();
@@ -57,23 +58,6 @@ class OxConsoleGame implements Game {
 
   private void welcomePlayers() {
     this.ui.say("*** Welcome to OX game! ***");
-    this.ui.say("For now there are only two human players, and the 'O' player begins.");
-  }
-
-  private void showPlayerBoardAndActionMessage(Player currentPlayer, Board board) {
-    this.ui.say(currentPlayer.toString());
-    this.ui.say(board.toString());
-    this.ui.say("Choose one field by entering its number (whole number; or press ctrl+C to exit game):");
-  }
-
-  private void showBoardAndSayItsOver(Board board, BoardValidator boardValidator) {
-    this.ui.say(board.toString());
-    this.ui.say("Demo 'game' is over!");
-    if (boardValidator.getWinner().equals(Symbol.EMPTY)) {
-      this.ui.say("It's a draw!");
-    } else {
-      this.ui.say(String.format("The winner is %s!", boardValidator.getWinner()));
-    }
   }
 
   private Board setBoardSideLength() {
@@ -96,4 +80,30 @@ class OxConsoleGame implements Game {
       return Settings.MIN_GAME_BOARD_SIDE_LENGTH;
     }
   }
+
+  private void setStartingPlayer() {
+    this.ui.say("Which player should start? (enter 1 if player 'O' and 2 if player'X')");
+    int playerNumber = this.ui.getNumberFromUser(NumberRange.of(1, 2));
+    if (playerNumber == 2) {
+        this.players = new Players.Builder().changeStarting().build();
+    }
+  }
+
+  private void showPlayerBoardAndActionMessage(Player currentPlayer, Board board) {
+    this.ui.say(currentPlayer.toString());
+    this.ui.say(board.toString());
+    this.ui.say("Choose one field by entering its number (whole number; or press ctrl+C to exit game):");
+  }
+
+  private void showBoardAndSayItsOver(Board board, BoardValidator boardValidator) {
+    this.ui.say(board.toString());
+    this.ui.say("Demo 'game' is over!");
+    if (boardValidator.getWinner().equals(Symbol.EMPTY)) {
+      this.ui.say("It's a draw!");
+    } else {
+      this.ui.say(String.format("The winner is %s!", boardValidator.getWinner()));
+    }
+  }
+
+
 }
