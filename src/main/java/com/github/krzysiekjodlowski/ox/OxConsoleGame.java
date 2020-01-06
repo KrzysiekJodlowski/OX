@@ -2,13 +2,11 @@ package com.github.krzysiekjodlowski.ox;
 
 import com.github.krzysiekjodlowski.ox.board.Board;
 import com.github.krzysiekjodlowski.ox.board.BoardValidator;
-import com.github.krzysiekjodlowski.ox.model.Symbol;
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 import com.github.krzysiekjodlowski.ox.ui.UI;
 
 /**
  * Main loop for OX game.
- * ATTENTION - For now it runs only one
- * "round" and without win condition check!
  *
  * @author Krzysztof Jodlowski
  */
@@ -29,55 +27,58 @@ class OxConsoleGame implements Game {
   @Override
   public void run() {
     this.welcomePlayers();
-    Board board = this.setBoardSideLength();
-    BoardValidator boardValidator = new BoardValidator(board, this.setWinCondition());
+    Integer boardSideLength = this.getBoardSideLengthFromUser();
+    Board board = new Board(boardSideLength);
+    BoardValidator boardValidator = new BoardValidator(
+        board, this.getWinConditionFromUser(boardSideLength)
+    );
     this.setStartingPlayer();
     this.oxGameEventBus.register(board);
     this.oxGameEventBus.register(boardValidator);
-    this.oxGameEventBus.register(this.players);
-    Player currentPlayer;
+    Player currentPlayer = this.players.getStartingPlayer();
 
     do {
-      currentPlayer = this.players.getCurrentPlayer();
-      this.showPlayerBoardAndActionMessage(currentPlayer, board);
+      this.showNextMove(currentPlayer, board);
       Move playersMove = null;
       try {
-        playersMove = currentPlayer.makeMove(this.ui);
-
+        playersMove = new Move(this.getFieldFromUser(board.getCapacity()),
+          currentPlayer.getSymbol()
+        );
       } catch (NumberFormatException | NumberLowerThanOneException e) {
         this.ui.say(e.getMessage());
       }
       if (playersMove != null && board.containsField(playersMove.getFieldNumber())) {
-        this.ui.say("This one is marked! Choose another one.");
+        this.ui.warn("This one is marked! Choose another one.");
         continue;
       }
       this.oxGameEventBus.dispatch(playersMove);
-    } while (!boardValidator.saysItsOver());
-    this.showBoardAndSayItsOver(board, boardValidator);
+      currentPlayer = this.players.nextPlayer();
+    } while (!boardValidator.isGameOver());
+    this.endGameRun(board, boardValidator);
   }
 
   private void welcomePlayers() {
     this.ui.say("*** Welcome to OX game! ***");
+    this.ui.say("You can quit the game anytime by pressing ctrl+C.");
   }
 
-  private Board setBoardSideLength() {
-    this.ui.say(String.format("What size of a game board side do you choose? "
+  private Integer getBoardSideLengthFromUser() {
+    this.ui.say(String.format("Please select board's side length "
             + "(whole numbers from %d to %d)",
-        Settings.MIN_GAME_BOARD_SIDE_LENGTH, Settings.MAX_GAME_BOARD_SIDE_LENGTH));
-    Settings.gameBoardSideLength = this.ui.getNumberFromUser(
-        NumberRange.of(Settings.MIN_GAME_BOARD_SIDE_LENGTH, Settings.MAX_GAME_BOARD_SIDE_LENGTH));
-    return new Board(Settings.gameBoardSideLength);
+        Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
+    return this.ui.getNumberFromUser(
+        NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
   }
 
-  private Integer setWinCondition() {
-    if (!(Settings.gameBoardSideLength == Settings.MIN_GAME_BOARD_SIDE_LENGTH)) {
+  private Integer getWinConditionFromUser(int boardSideLength) {
+    if (!(boardSideLength == Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH)) {
       this.ui.say(String.format("Select the length of the winning line "
               + "(numbers from %d to %d)",
-          Settings.MIN_GAME_BOARD_SIDE_LENGTH, Settings.gameBoardSideLength));
+          Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
       return this.ui.getNumberFromUser(
-          NumberRange.of(Settings.MIN_GAME_BOARD_SIDE_LENGTH, Settings.gameBoardSideLength));
+          NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
     } else {
-      return Settings.MIN_GAME_BOARD_SIDE_LENGTH;
+      return Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH;
     }
   }
 
@@ -85,26 +86,31 @@ class OxConsoleGame implements Game {
     this.ui.say("Which player should start? (enter 1 if player 'O' and 2 if player'X')");
     int playerNumber = this.ui.getNumberFromUser(NumberRange.of(1, 2));
     if (playerNumber == 2) {
-      this.players = new Players.Builder().changeStarting().build();
+      this.players.changeStarting();
     }
   }
 
-  private void showPlayerBoardAndActionMessage(Player currentPlayer, Board board) {
+  private void showNextMove(Player currentPlayer, Board board) {
     this.ui.say(currentPlayer.toString());
     this.ui.say(board.toString());
-    this.ui.say("Choose one field by entering its number "
-        + "(whole number; or press ctrl+C to exit game):");
+    this.ui.say("Please enter field number (whole number):");
   }
 
-  private void showBoardAndSayItsOver(Board board, BoardValidator boardValidator) {
+  private FieldNumber getFieldFromUser(int boardCapacity) throws NumberLowerThanOneException {
+    NumberRange<Integer> boardBoundaryFields = NumberRange.of(
+        Settings.INSTANCE.FIRST_FIELD_NUMBER,
+        boardCapacity
+    );
+    return FieldNumber.valueOf(ui.getNumberFromUser(boardBoundaryFields));
+  }
+
+  private void endGameRun(Board board, BoardValidator boardValidator) {
     this.ui.say(board.toString());
-    this.ui.say("Demo 'game' is over!");
-    if (boardValidator.getWinner().equals(Symbol.EMPTY)) {
+    this.ui.say("Demo game is over!");
+    if (boardValidator.getWinner() == null) {
       this.ui.say("It's a draw!");
     } else {
       this.ui.say(String.format("The winner is %s!", boardValidator.getWinner()));
     }
   }
-
-
 }

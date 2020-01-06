@@ -1,7 +1,6 @@
 package com.github.krzysiekjodlowski.ox;
 
 import com.github.krzysiekjodlowski.ox.model.Symbol;
-import com.github.krzysiekjodlowski.ox.ui.UI;
 
 /**
  * Base for any player. Each one descendant
@@ -11,14 +10,14 @@ import com.github.krzysiekjodlowski.ox.ui.UI;
  * @author Krzysztof Jodlowski
  */
 abstract class Player {
-  private final Symbol playersSymbol;
+  private final Symbol symbol;
 
   Player(Symbol symbol) {
-    this.playersSymbol = symbol;
+    this.symbol = symbol;
   }
 
-  Symbol getPlayersSymbol() {
-    return this.playersSymbol;
+  Symbol getSymbol() {
+    return this.symbol;
   }
 
   @Override
@@ -30,12 +29,12 @@ abstract class Player {
       return false;
     }
     Player that = (Player) o;
-    return this.playersSymbol == that.playersSymbol;
+    return this.symbol == that.symbol;
   }
 
   @Override
   public int hashCode() {
-    return this.playersSymbol.hashCode();
+    return this.symbol.hashCode();
   }
 
   /**
@@ -47,15 +46,6 @@ abstract class Player {
    */
   @Override
   public String toString() {
-    return String.format("Player %s", this.playersSymbol);
+    return String.format("Player %s", this.symbol);
   }
-
-  /**
-   * Core functionality of player, which should
-   * be different in each type of a Player.
-   *
-   * @param ui generic user interface
-   * @return Move made by player
-   */
-  public abstract Move makeMove(UI<String, Integer> ui) throws NumberLowerThanOneException;
 }

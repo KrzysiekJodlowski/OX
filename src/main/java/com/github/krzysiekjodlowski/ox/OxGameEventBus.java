@@ -1,8 +1,6 @@
 package com.github.krzysiekjodlowski.ox;
 
-import com.github.krzysiekjodlowski.ox.board.BoardValidator;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
  */
 class OxGameEventBus implements EventBus {
 
-  private final List<Subscriber> subscribers = new ArrayList<>();
+  private final List<Subscriber> subscribers = new LinkedList<>();
 
   /**
    * ${@inheritDoc}.

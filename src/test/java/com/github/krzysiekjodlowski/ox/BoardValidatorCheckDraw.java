@@ -43,7 +43,7 @@ public class BoardValidatorCheckDraw {
       board.handle(move);
       boardValidator.handle(move);
     }
-    boolean isGameOver = boardValidator.saysItsOver();
+    boolean isGameOver = boardValidator.isGameOver();
 
     //assert
     assertTrue(isGameOver);

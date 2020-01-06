@@ -8,7 +8,7 @@ import com.github.krzysiekjodlowski.ox.model.Symbol;
  *
  * @author Krzysztof Jodlowski
  */
-class Players implements Subscriber {
+class Players {
   private final Player playerOne;
   private final Player playerTwo;
   private Player currentPlayer;
@@ -19,17 +19,22 @@ class Players implements Subscriber {
     this.currentPlayer = builder.startingPlayer;
   }
 
-  Player getCurrentPlayer() {
+  Player getStartingPlayer() {
     return this.currentPlayer;
   }
 
   /**
    * Changes currentPlayer on each move made by another Player.
    *
-   * @param event represents move made by another Player
+   * @return next player
    */
-  @Override
-  public void handle(Event<?> event) {
+  public Player nextPlayer() {
+    this.currentPlayer = this.currentPlayer.equals(this.playerOne)
+        ? this.playerTwo : this.playerOne;
+    return this.currentPlayer;
+  }
+
+  void changeStarting() {
     this.currentPlayer = this.currentPlayer.equals(this.playerOne)
         ? this.playerTwo : this.playerOne;
   }
@@ -45,12 +50,13 @@ class Players implements Subscriber {
     private Player playerTwo = new HumanPlayer(Symbol.CROSS);
     private Player startingPlayer = this.playerOne;
 
-    public Builder() {
+    public Builder setFirstPlayer(Player player) {
+      this.playerOne = player;
+      return this;
     }
 
-    public Builder changeStarting() {
-      this.startingPlayer = this.startingPlayer.equals(this.playerOne)
-          ? this.playerTwo : this.playerOne;
+    public Builder setSecondPlayer(Player player) {
+      this.playerTwo = player;
       return this;
     }
 

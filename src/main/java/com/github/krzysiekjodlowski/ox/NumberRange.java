@@ -22,8 +22,8 @@ public class NumberRange<T> {
    * and returning new NumberRange with properly
    * set values.
    *
-   * @param minimalValue alleged lower bound of range
-   * @param maximumValue alleged upper bound of range
+   * @param minimalValue lower bound of range
+   * @param maximumValue upper bound of range
    * @return new NumberRange object
    */
   public static <T> NumberRange<T> of(T minimalValue, T maximumValue) {

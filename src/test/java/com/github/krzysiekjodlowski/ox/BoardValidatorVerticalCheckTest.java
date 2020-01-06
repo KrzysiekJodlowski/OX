@@ -137,7 +137,7 @@ public class BoardValidatorVerticalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -156,7 +156,7 @@ public class BoardValidatorVerticalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -178,7 +178,7 @@ public class BoardValidatorVerticalCheckTest {
 
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -197,7 +197,7 @@ public class BoardValidatorVerticalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -221,7 +221,7 @@ public class BoardValidatorVerticalCheckTest {
         );
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);

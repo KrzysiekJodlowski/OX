@@ -10,7 +10,6 @@ import org.testng.collections.Lists;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertTrue;
@@ -127,7 +126,7 @@ public class BoardValidatorHorizontalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -146,7 +145,7 @@ public class BoardValidatorHorizontalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -168,7 +167,7 @@ public class BoardValidatorHorizontalCheckTest {
 
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -187,7 +186,7 @@ public class BoardValidatorHorizontalCheckTest {
         boardValidator.handle(new Move(FieldNumber.valueOf(chosenFields[2]), Symbol.CROSS));
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);
@@ -211,7 +210,7 @@ public class BoardValidatorHorizontalCheckTest {
         );
 
         //act
-        boolean isGameOver = boardValidator.saysItsOver();
+        boolean isGameOver = boardValidator.isGameOver();
 
         //assert
         assertTrue(isGameOver);

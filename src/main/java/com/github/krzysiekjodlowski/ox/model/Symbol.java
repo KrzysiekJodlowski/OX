@@ -6,7 +6,7 @@ package com.github.krzysiekjodlowski.ox.model;
  * @author Krzysztof Jodlowski
  */
 public enum Symbol {
-  NAUGHT("O"), CROSS("X"), EMPTY(" ");
+  NAUGHT("O"), CROSS("X");
 
   private final String value;
 

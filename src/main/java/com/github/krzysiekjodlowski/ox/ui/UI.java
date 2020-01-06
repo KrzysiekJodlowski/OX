@@ -3,9 +3,8 @@ package com.github.krzysiekjodlowski.ox.ui;
 import com.github.krzysiekjodlowski.ox.NumberRange;
 
 /**
- * Interacting directly with user,
- * used for collecting input end
- * outputting messages to user.
+ * Interacts directly with user, collects
+ * input end outputts messages to user.
  *
  * @author Krzysztof Jodlowski
  */
@@ -16,6 +15,13 @@ public interface UI<T1, T2 extends Number> {
    * @param message any appropriate representation
    */
   void say(T1 message);
+
+  /**
+   * Outputs error message to user.
+   *
+   * @param errorMessage any appropriate representation
+   */
+  void warn(T1 errorMessage);
 
   /**
    * Returns Number type from user input.

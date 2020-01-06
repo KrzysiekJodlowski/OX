@@ -30,6 +30,17 @@ public class ConsoleUI implements UI<String, Integer> {
   }
 
   /**
+   * {@inheritDoc}
+   *
+   * @param errorMessage String representation
+   */
+  @Override
+  public void warn(String errorMessage) {
+    this.printStream.println(String.format("\033[31m%s\033[0m", errorMessage));
+
+  }
+
+  /**
    * Get Integer from user within the provided NumberRange.
    *
    * @param range configurable range of Integers
@@ -45,15 +56,19 @@ public class ConsoleUI implements UI<String, Integer> {
         String tempInput = this.scanner.nextLine();
         input = Integer.parseInt(tempInput.split(" ")[0]);
       } catch (NumberFormatException e) {
-        this.printStream.println("Provided input is not a required number!");
+        this.warn("Provided input is not a required number!");
         continue;
       }
-      if (!range.numberInRange(input)) {
-        this.printStream.println("Provided number is out of range!");
-      } else {
-        correctInput = true;
-      }
+      correctInput = this.getInputCorrectnessInTermsOfRange(!range.numberInRange(input));
     } while (!correctInput);
     return input;
+  }
+
+  private boolean getInputCorrectnessInTermsOfRange(boolean numberInRange) {
+    if (numberInRange) {
+      this.warn("Provided number is out of range!");
+      return false;
+    }
+    return true;
   }
 }

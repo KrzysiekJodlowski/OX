@@ -12,7 +12,7 @@ output_dir = create_output_dir()
 
 # runs each scenario separately and writes its output to file
 def run_scenario(scenario):
-    process = run(['java', '-jar', 'target/ox-0.2.jar'], stdout=PIPE, encoding='utf-8', input=scenario[1])
+    process = run(['java', '-jar', 'target/ox-0.3.jar'], stdout=PIPE, encoding='utf-8', input=scenario[1])
     game_flow = process.stdout
 
     results = open(output_dir + scenario[0], "a")

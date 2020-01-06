@@ -12,7 +12,7 @@ import com.github.krzysiekjodlowski.ox.model.Symbol;
  */
 public class BoardValidator implements Subscriber {
   private boolean isGameOver = false;
-  private Symbol winner = Symbol.EMPTY;
+  private Symbol winner = null;
   private HorizontalChecker horizontalChecker;
   private VerticalChecker verticalChecker;
   private SlantChecker slantChecker;
@@ -55,7 +55,7 @@ public class BoardValidator implements Subscriber {
         || this.reverseSlantChecker.checkLine(playersMove);
   }
 
-  public boolean saysItsOver() {
+  public boolean isGameOver() {
     return this.isGameOver;
   }
 

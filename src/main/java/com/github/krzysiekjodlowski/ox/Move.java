@@ -26,11 +26,6 @@ public class Move implements Event<Move> {
   }
 
   @Override
-  public Move getData() {
-    return this;
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (o == this) {
       return true;
@@ -41,5 +36,12 @@ public class Move implements Event<Move> {
     Move move = (Move) o;
     return move.fieldNumber.equals(this.fieldNumber)
         && move.playersSymbol == this.playersSymbol;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = this.fieldNumber.hashCode();
+    result = 31 * result + this.playersSymbol.hashCode();
+    return result;
   }
 }

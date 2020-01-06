@@ -59,5 +59,5 @@ Choose one field by entering its number (whole number; or press ctrl+C to exit g
  X X O
  O X X
 
-Demo 'game' is over!
+Demo game is over!
 It's a draw!

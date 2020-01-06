@@ -63,6 +63,10 @@ public class Board implements Subscriber {
     return this.fields.get(fieldNumber);
   }
 
+  public int getCapacity() {
+    return this.boardCapacity;
+  }
+
   /**
    * Creates nice String representation of a board game.
    *
@@ -78,11 +82,10 @@ public class Board implements Subscriber {
       try {
         currentFieldNumber = FieldNumber.valueOf(i);
       } catch (NumberLowerThanOneException e) {
-        e.printStackTrace();
+        System.out.println(e.getMessage());
       }
       stringBuilder.append(
-          !this.getMarkedField(currentFieldNumber)
-              .equals(Symbol.EMPTY)
+          this.getMarkedField(currentFieldNumber) != null
               ? String.format(" %" + maxFieldLength + "s",
               this.getMarkedField(currentFieldNumber))
               : String.format(" %" + maxFieldLength + "d", i));
@@ -95,7 +98,7 @@ public class Board implements Subscriber {
 
   private Symbol getMarkedField(final FieldNumber fieldNumber) {
     return this.containsMarkedField(fieldNumber)
-        ? this.fields.get(fieldNumber) : Symbol.EMPTY;
+        ? this.fields.get(fieldNumber) : null;
   }
 
   private boolean containsMarkedField(final FieldNumber fieldNumber) {

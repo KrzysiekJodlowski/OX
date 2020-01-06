@@ -2,13 +2,13 @@ package com.github.krzysiekjodlowski.ox.board;
 
 import com.github.krzysiekjodlowski.ox.Move;
 import com.github.krzysiekjodlowski.ox.NumberLowerThanOneException;
-import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 
-class ReverseSlantChecker implements LineChecker {
+class ReverseSlantChecker extends NextSlantFieldChecker implements LineChecker {
   private Board board;
   private int winCondition;
 
   ReverseSlantChecker(Board board, int winCondition) {
+    super(board);
     this.board = board;
     this.winCondition = winCondition;
   }
@@ -30,7 +30,7 @@ class ReverseSlantChecker implements LineChecker {
         return false;
       }
       try {
-        if (checkBefore && checkIfThereIsAnother(
+        if (checkBefore && checkIfThereIsAnotherSymbol(
             (current - i * this.board.getBoardSideLength()) + i - 1,
             (current - i * this.board.getBoardSideLength()) + i, playersMove)) {
           found += 1;
@@ -41,7 +41,7 @@ class ReverseSlantChecker implements LineChecker {
         checkBefore = false;
       }
       try {
-        if (checkAfter && checkIfThereIsAnother(
+        if (checkAfter && checkIfThereIsAnotherSymbol(
             current + i * this.board.getBoardSideLength() - i,
             (current + i * this.board.getBoardSideLength()) - i, playersMove)) {
           found += 1;
@@ -53,15 +53,5 @@ class ReverseSlantChecker implements LineChecker {
       }
     }
     return found >= this.winCondition;
-  }
-
-  private boolean checkIfThereIsAnother(int currentField, int nextField, Move playersMove)
-      throws NumberLowerThanOneException {
-    return (currentField % this.board.getBoardSideLength() != 0)
-        && nextField <= this.board.getBoardCapacity()
-        && this.board.containsField(FieldNumber.valueOf(nextField))
-        && this.board.getSymbol(
-            FieldNumber.valueOf(nextField)).equals(playersMove.getPlayersSymbol()
-    );
   }
 }

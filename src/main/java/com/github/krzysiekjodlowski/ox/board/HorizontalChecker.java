@@ -27,7 +27,7 @@ class HorizontalChecker implements LineChecker {
         return false;
       }
       try {
-        if (checkLeft && checkIfThereIsAnother(current - i, current - i, playersMove)) {
+        if (checkLeft && checkIfThereIsAnotherSymbol(current - i, current - i, playersMove)) {
           found += 1;
         } else {
           checkLeft = false;
@@ -36,7 +36,7 @@ class HorizontalChecker implements LineChecker {
         checkLeft = false;
       }
       try {
-        if (checkRight && checkIfThereIsAnother(current + i - 1, current + i, playersMove)) {
+        if (checkRight && checkIfThereIsAnotherSymbol(current + i - 1, current + i, playersMove)) {
           found += 1;
         } else {
           checkRight = false;
@@ -48,7 +48,7 @@ class HorizontalChecker implements LineChecker {
     return found >= this.winCondition;
   }
 
-  private boolean checkIfThereIsAnother(int potentialCorner, int nextField, Move playersMove)
+  private boolean checkIfThereIsAnotherSymbol(int potentialCorner, int nextField, Move playersMove)
       throws NumberLowerThanOneException {
     return ((potentialCorner) % this.board.getBoardSideLength() != 0)
         && this.board.containsField(FieldNumber.valueOf(nextField))

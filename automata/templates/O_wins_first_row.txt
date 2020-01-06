@@ -35,5 +35,5 @@ Choose one field by entering its number (whole number; or press ctrl+C to exit g
  4 X 6
  X 8 9
 
-Demo 'game' is over!
+Demo game is over!
 The winner is O!

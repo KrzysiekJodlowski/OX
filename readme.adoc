@@ -1,6 +1,6 @@
 == OX
 *Author*: _Krzysztof Jodłowski_ +
-*Version*: _0.1_
+*Version*: _0.3_
 
 *Description*: Simple _tic-tac-toe_ game.
 
@@ -14,9 +14,9 @@ To run project:
 
 - without any custom input run _"standard"_ script
 - project with automated input run _"auto"_ script
-- running script from command line by typing *_./standard.sh_* or *_./auto.sh_*
-- if you can't run a script first execute command like: *_chmod 755 standard.sh_* (or *_chmod 755 auto.sh_*)
-- when running _"auto"_ script new folder with name matching DATE_TIME name in automata/output is created, inside that folder you can see effect of running the game with all provided default scenarios:
+- run script from command line by typing *_./standard.sh_* or *_./auto.sh_*
+- if you can't run a script execute command *_chmod 755 standard.sh_* (or *_chmod 755 auto.sh_*) and then run it as explained above
+- when run _"auto"_ script new folder with name matching DATE_TIME name in automata/output is created, inside that folder you can see automated tests results:
 * draw
 * "O" wins by matching first column
 * "O" wins by matching second column
@@ -26,5 +26,5 @@ To run project:
 * "O" wins by matching third row
 * "O" wins by matching slant line
 * "O" wins by matching reversed slant line
-- also, when running _"auto"_ script in DATE_TIME folder tou can find an error summary (_README_ file) of comparing reference file (folder _templates_) with actual results
+- also, when you run _"auto"_ script in DATE_TIME folder tou can find an error summary (_README_ file) of comparing reference file (folder _templates_) with actual results
 
