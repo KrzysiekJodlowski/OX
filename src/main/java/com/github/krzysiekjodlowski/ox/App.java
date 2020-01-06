@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,7 @@ final class App {
     Scanner scanner = setScanner(args);
     // in the future releases (when more UI implementations will appear) another
     // helper method checking UI chosen type will initialize the interface
-    UI<String, Integer> ui = new ConsoleUI(scanner, new PrintStream(System.out));
+    UI<String, Integer> ui = new ConsoleUI(scanner, new PrintStream(System.out, false, StandardCharsets.UTF_8));
     Game game = new OxConsoleGame(ui);
     game.run();
   }
@@ -37,12 +38,12 @@ final class App {
       try {
         scanner = new Scanner(
             new FileInputStream(new File(args[0]))
-        );
+        , StandardCharsets.UTF_8);
       } catch (FileNotFoundException e) {
         System.out.println("File not found!");
       }
     } else {
-      scanner = new Scanner(System.in);
+      scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     }
     return scanner;
   }

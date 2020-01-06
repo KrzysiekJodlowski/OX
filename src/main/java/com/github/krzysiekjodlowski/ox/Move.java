@@ -3,6 +3,8 @@ package com.github.krzysiekjodlowski.ox;
 import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 import com.github.krzysiekjodlowski.ox.model.Symbol;
 
+import java.util.Objects;
+
 /**
  * Player move representation as Event.
  *
@@ -41,5 +43,10 @@ public class Move implements Event<Move> {
     Move move = (Move) o;
     return move.fieldNumber.equals(this.fieldNumber)
         && move.playersSymbol == this.playersSymbol;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(fieldNumber, playersSymbol);
   }
 }
