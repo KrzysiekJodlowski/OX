@@ -1,9 +1,9 @@
 package com.github.krzysiekjodlowski.ox;
 
 import com.github.krzysiekjodlowski.ox.board.Board;
+import com.github.krzysiekjodlowski.ox.board.BoardValidator;
 import com.github.krzysiekjodlowski.ox.model.Symbol;
 import com.github.krzysiekjodlowski.ox.ui.UI;
-import com.github.krzysiekjodlowski.ox.board.BoardValidator;
 
 /**
  * Main loop for OX game.
@@ -51,7 +51,6 @@ class OxConsoleGame implements Game {
         continue;
       }
       this.oxGameEventBus.dispatch(playersMove);
-//      this.ui.clear();
     } while (!boardValidator.saysItsOver());
     this.showBoardAndSayItsOver(board, boardValidator);
   }
@@ -85,14 +84,15 @@ class OxConsoleGame implements Game {
     this.ui.say("Which player should start? (enter 1 if player 'O' and 2 if player'X')");
     int playerNumber = this.ui.getNumberFromUser(NumberRange.of(1, 2));
     if (playerNumber == 2) {
-        this.players = new Players.Builder().changeStarting().build();
+      this.players = new Players.Builder().changeStarting().build();
     }
   }
 
   private void showPlayerBoardAndActionMessage(Player currentPlayer, Board board) {
     this.ui.say(currentPlayer.toString());
     this.ui.say(board.toString());
-    this.ui.say("Choose one field by entering its number (whole number; or press ctrl+C to exit game):");
+    this.ui.say("Choose one field by entering its number "
+        + "(whole number; or press ctrl+C to exit game):");
   }
 
   private void showBoardAndSayItsOver(Board board, BoardValidator boardValidator) {

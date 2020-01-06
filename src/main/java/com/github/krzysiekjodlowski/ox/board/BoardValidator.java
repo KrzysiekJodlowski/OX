@@ -1,7 +1,8 @@
 package com.github.krzysiekjodlowski.ox.board;
 
-import com.github.krzysiekjodlowski.ox.*;
-import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.Event;
+import com.github.krzysiekjodlowski.ox.Move;
+import com.github.krzysiekjodlowski.ox.Subscriber;
 import com.github.krzysiekjodlowski.ox.model.Symbol;
 
 /**
@@ -18,6 +19,11 @@ public class BoardValidator implements Subscriber {
   private ReverseSlantChecker reverseSlantChecker;
   private Board board;
 
+  /**
+   * Initializes all checher classes.
+   * @param board game board
+   * @param winCondition winning line length
+   */
   public BoardValidator(Board board, int winCondition) {
     this.horizontalChecker = new HorizontalChecker(board, winCondition);
     this.verticalChecker = new VerticalChecker(board, winCondition);

@@ -1,6 +1,9 @@
 package com.github.krzysiekjodlowski.ox.board;
 
-import com.github.krzysiekjodlowski.ox.*;
+import com.github.krzysiekjodlowski.ox.Event;
+import com.github.krzysiekjodlowski.ox.Move;
+import com.github.krzysiekjodlowski.ox.NumberLowerThanOneException;
+import com.github.krzysiekjodlowski.ox.Subscriber;
 import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 import com.github.krzysiekjodlowski.ox.model.Symbol;
 
@@ -40,10 +43,6 @@ public class Board implements Subscriber {
    * @param fieldNumber field number
    * @return true if field is already marked, false otherwise
    */
-//  public boolean containsField(FieldNumber fieldNumber) {
-//    return this.fields.containsKey(fieldNumber);
-//  }
-
   public boolean containsField(FieldNumber fieldNumber) {
     return this.fields.containsKey(fieldNumber);
   }
@@ -56,7 +55,9 @@ public class Board implements Subscriber {
     return this.boardCapacity;
   }
 
-  int getBoardFulfillment() { return this.fields.size(); }
+  int getBoardFulfillment() {
+    return this.fields.size();
+  }
 
   Symbol getSymbol(FieldNumber fieldNumber) {
     return this.fields.get(fieldNumber);

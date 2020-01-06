@@ -21,14 +21,16 @@ class VerticalChecker implements LineChecker {
     int x = this.winCondition - 1;
     int found = 1;
     boolean checkUp = (current - this.board.getBoardSideLength()) > 0;
-    boolean checkDown = (current + this.board.getBoardSideLength()) <= this.board.getBoardCapacity();
+    boolean checkDown = (
+        current + this.board.getBoardSideLength()) <= this.board.getBoardCapacity();
 
     for (int i = 1; i <= x; i++) {
       if (!checkUp && !checkDown) {
         return false;
       }
       try {
-        if (checkUp && checkIfThereIsAnother(current - i * this.board.getBoardSideLength(), playersMove)) {
+        if (checkUp && checkIfThereIsAnother(
+            current - i * this.board.getBoardSideLength(), playersMove)) {
           found += 1;
         } else {
           checkUp = false;
@@ -37,7 +39,8 @@ class VerticalChecker implements LineChecker {
         checkUp = false;
       }
       try {
-        if (checkDown && checkIfThereIsAnother(current + i * this.board.getBoardSideLength(), playersMove)) {
+        if (checkDown && checkIfThereIsAnother(
+            current + i * this.board.getBoardSideLength(), playersMove)) {
           found += 1;
         } else {
           checkDown = false;
@@ -49,10 +52,13 @@ class VerticalChecker implements LineChecker {
     return found >= this.winCondition;
   }
 
-  private boolean checkIfThereIsAnother(int potentialField, Move playersMove) throws NumberLowerThanOneException {
+  private boolean checkIfThereIsAnother(int potentialField, Move playersMove)
+      throws NumberLowerThanOneException {
     return potentialField <= this.board.getBoardCapacity()
         && this.board.containsField(FieldNumber.valueOf(potentialField))
-        && this.board.getSymbol(FieldNumber.valueOf(potentialField)).equals(playersMove.getPlayersSymbol());
+        && this.board.getSymbol(
+            FieldNumber.valueOf(potentialField)).equals(playersMove.getPlayersSymbol()
+    );
   }
 }
 

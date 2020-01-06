@@ -13,8 +13,18 @@ To run project you have to use:
 To run project:
 
 - without any custom input run _"standard"_ script
-- project with provided custom input run _"custom"_ script
-- running script from command line by typing eg: *_./custom.sh (custom_board_sizes.input)_*
-- if you can't run a script first execute command like: *_chmod 755 custom.sh_*
-
+- project with automated input run _"auto"_ script
+- running script from command line by typing *_./standard.sh_* or *_./auto.sh_*
+- if you can't run a script first execute command like: *_chmod 755 standard.sh_* (or *_chmod 755 auto.sh_*)
+- when running _"auto"_ script new folder with name matching DATE_TIME name in automata/output is created, inside that folder you can see effect of running the game with all provided default scenarios:
+* draw
+* "O" wins by matching first column
+* "O" wins by matching second column
+* "O" wins by matching third column
+* "O" wins by matching first row
+* "O" wins by matching second row
+* "O" wins by matching third row
+* "O" wins by matching slant line
+* "O" wins by matching reversed slant line
+- also, when running _"auto"_ script in DATE_TIME folder tou can find an error summary (_README_ file) of comparing reference file (folder _templates_) with actual results
 

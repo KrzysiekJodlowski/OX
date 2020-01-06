@@ -56,14 +56,4 @@ public class ConsoleUI implements UI<String, Integer> {
     } while (!correctInput);
     return input;
   }
-
-  /**
-   * ${@inheritDoc}
-   * Console version.
-   */
-  @Override
-  public void clear() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
-  }
 }

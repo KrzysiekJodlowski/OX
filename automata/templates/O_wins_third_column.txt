@@ -1,0 +1,39 @@
+*** Welcome to OX game! ***
+What size of a game board side do you choose? (whole numbers from 3 to 40)
+Which player should start? (enter 1 if player 'O' and 2 if player'X')
+Player O (human)
+ 1 2 3
+ 4 5 6
+ 7 8 9
+
+Choose one field by entering its number (whole number; or press ctrl+C to exit game):
+Player X (human)
+ 1 2 O
+ 4 5 6
+ 7 8 9
+
+Choose one field by entering its number (whole number; or press ctrl+C to exit game):
+Player O (human)
+ 1 2 O
+ 4 X 6
+ 7 8 9
+
+Choose one field by entering its number (whole number; or press ctrl+C to exit game):
+Player X (human)
+ 1 2 O
+ 4 X 6
+ 7 8 O
+
+Choose one field by entering its number (whole number; or press ctrl+C to exit game):
+Player O (human)
+ 1 2 O
+ 4 X 6
+ X 8 O
+
+Choose one field by entering its number (whole number; or press ctrl+C to exit game):
+ 1 2 O
+ 4 X O
+ X 8 O
+
+Demo 'game' is over!
+The winner is O!
