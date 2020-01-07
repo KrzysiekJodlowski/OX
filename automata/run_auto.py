@@ -5,8 +5,7 @@ import os
 # creates directory with name year-month-day_hour-minutes
 def create_output_dir():
     current_date = datetime.now().strftime("%Y-%m-%d_%H-%M")
-    os.mkdir("automata/output/")
-    output = "automata/output/" + current_date + "/"
+    output = "automata/" + current_date + "/"
     os.mkdir(output)
     return output
 output_dir = create_output_dir()

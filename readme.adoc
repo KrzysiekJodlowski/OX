@@ -16,7 +16,7 @@ To run project:
 - project with automated input run _"auto"_ script
 - run script from command line by typing *_./standard.sh_* or *_./auto.sh_*
 - if you can't run a script execute command *_chmod 755 standard.sh_* (or *_chmod 755 auto.sh_*) and then run it as explained above
-- when run _"auto"_ script new folder with name matching DATE_TIME name in automata/output is created, inside that folder you can see automated tests results:
+- when run _"auto"_ script new folder with name matching DATE_TIME name in automata/ is created, inside that folder you can see automated tests results:
 * draw
 * "O" wins by matching first column
 * "O" wins by matching second column
