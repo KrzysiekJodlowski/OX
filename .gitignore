@@ -132,3 +132,4 @@ stale_outputs_checked
 automata/*
 !run_auto.py
 !templates/
+!generator.py
