@@ -65,9 +65,11 @@ class OxConsoleGame implements Game {
   private Integer getBoardSideLengthFromUser() {
     this.ui.say(String.format("Please select board's side length "
             + "(whole numbers from %d to %d)",
-        Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
+        Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH,
+        Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
     return this.ui.getNumberFromUser(
-        NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
+        NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH,
+            Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
   }
 
   private Integer getWinConditionFromUser(int boardSideLength) {

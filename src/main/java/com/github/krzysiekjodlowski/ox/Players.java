@@ -50,15 +50,7 @@ class Players {
     private Player playerTwo = new HumanPlayer(Symbol.CROSS);
     private Player startingPlayer = this.playerOne;
 
-    public Builder setFirstPlayer(Player player) {
-      this.playerOne = player;
-      return this;
-    }
-
-    public Builder setSecondPlayer(Player player) {
-      this.playerTwo = player;
-      return this;
-    }
+    // TODO: 07.01.2020 setting first and second player (will be used by Settings) 
 
     public Players build() {
       return new Players(this);
