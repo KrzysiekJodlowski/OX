@@ -129,4 +129,6 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/java,maven,intellij+all
 stale_outputs_checked
 *~
-automata/output/*
+automata/*
+!run_auto.py
+!templates/
