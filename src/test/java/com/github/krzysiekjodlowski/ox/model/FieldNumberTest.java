@@ -1,5 +1,6 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.model;
 
+import com.github.krzysiekjodlowski.ox.NumberLowerThanOneException;
 import com.github.krzysiekjodlowski.ox.model.FieldNumber;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

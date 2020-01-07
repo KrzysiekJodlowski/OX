@@ -50,7 +50,7 @@ class Players {
     private Player playerTwo = new HumanPlayer(Symbol.CROSS);
     private Player startingPlayer = this.playerOne;
 
-    // TODO: 07.01.2020 setting first and second player (will be used by Settings) 
+    // TODO: 07.01.2020 setting first and second player (will be used by Settings)
 
     public Players build() {
       return new Players(this);

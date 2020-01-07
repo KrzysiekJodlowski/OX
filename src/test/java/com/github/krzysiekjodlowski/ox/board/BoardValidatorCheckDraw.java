@@ -1,5 +1,7 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.board;
 
+import com.github.krzysiekjodlowski.ox.Move;
+import com.github.krzysiekjodlowski.ox.NumberLowerThanOneException;
 import com.github.krzysiekjodlowski.ox.board.Board;
 import com.github.krzysiekjodlowski.ox.board.BoardValidator;
 import com.github.krzysiekjodlowski.ox.model.FieldNumber;

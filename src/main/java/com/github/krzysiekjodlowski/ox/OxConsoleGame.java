@@ -65,22 +65,22 @@ class OxConsoleGame implements Game {
   private Integer getBoardSideLengthFromUser() {
     this.ui.say(String.format("Please select board's side length "
             + "(whole numbers from %d to %d)",
-        Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH,
-        Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
+        Settings.MIN_GAME_BOARD_SIDE_LENGTH,
+        Settings.MAX_GAME_BOARD_SIDE_LENGTH));
     return this.ui.getNumberFromUser(
-        NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH,
-            Settings.INSTANCE.MAX_GAME_BOARD_SIDE_LENGTH));
+        NumberRange.of(Settings.MIN_GAME_BOARD_SIDE_LENGTH,
+            Settings.MAX_GAME_BOARD_SIDE_LENGTH));
   }
 
   private Integer getWinConditionFromUser(int boardSideLength) {
-    if (!(boardSideLength == Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH)) {
+    if (!(boardSideLength == Settings.MIN_GAME_BOARD_SIDE_LENGTH)) {
       this.ui.say(String.format("Select the length of the winning line "
               + "(numbers from %d to %d)",
-          Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
+          Settings.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
       return this.ui.getNumberFromUser(
-          NumberRange.of(Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
+          NumberRange.of(Settings.MIN_GAME_BOARD_SIDE_LENGTH, boardSideLength));
     } else {
-      return Settings.INSTANCE.MIN_GAME_BOARD_SIDE_LENGTH;
+      return Settings.MIN_GAME_BOARD_SIDE_LENGTH;
     }
   }
 
@@ -100,7 +100,7 @@ class OxConsoleGame implements Game {
 
   private FieldNumber getFieldFromUser(int boardCapacity) throws NumberLowerThanOneException {
     NumberRange<Integer> boardBoundaryFields = NumberRange.of(
-        Settings.INSTANCE.FIRST_FIELD_NUMBER,
+        Settings.FIRST_FIELD_NUMBER,
         boardCapacity
     );
     return FieldNumber.valueOf(ui.getNumberFromUser(boardBoundaryFields));

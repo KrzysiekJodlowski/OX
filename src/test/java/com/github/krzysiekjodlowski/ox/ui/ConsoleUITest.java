@@ -1,5 +1,6 @@
-package com.github.krzysiekjodlowski.ox;
+package com.github.krzysiekjodlowski.ox.ui;
 
+import com.github.krzysiekjodlowski.ox.NumberRange;
 import com.github.krzysiekjodlowski.ox.ui.ConsoleUI;
 import com.github.krzysiekjodlowski.ox.ui.UI;
 import org.testng.annotations.DataProvider;
