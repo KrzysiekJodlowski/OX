@@ -1,0 +1,40 @@
+*** Welcome to OX game! ***
+You can quit the game anytime by pressing ctrl+C.
+Please select board's side length (whole numbers from 3 to 40)
+Which player should start? (enter 1 if player 'O' and 2 if player'X')
+Player O (human)
+ 1 2 3
+ 4 5 6
+ 7 8 9
+
+Please enter field number (whole number):
+Player X (human)
+ 1 2 O
+ 4 5 6
+ 7 8 9
+
+Please enter field number (whole number):
+Player O (human)
+ 1 2 O
+ 4 X 6
+ 7 8 9
+
+Please enter field number (whole number):
+Player X (human)
+ 1 2 O
+ 4 X 6
+ 7 8 O
+
+Please enter field number (whole number):
+Player O (human)
+ 1 2 O
+ 4 X 6
+ X 8 O
+
+Please enter field number (whole number):
+ 1 2 O
+ 4 X O
+ X 8 O
+
+Demo game is over!
+The winner is O!

@@ -6,9 +6,9 @@
 
     <groupId>com.github.krzysiekjodlowski</groupId>
     <artifactId>ox</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <name>OX</name>
-    <description>Tic-tac-toe</description>
+    <description>Tic-tac-toe game for two human players, played on board with 3-40 side length.</description>
     <url>github.com/KrzysiekJodlowski/OX</url>
 
     <properties>
@@ -27,12 +27,21 @@
         <version.dependency.testng>7.1.0</version.dependency.testng>
         <version.dependency.mockito>3.2.4</version.dependency.mockito>
         <!-- plugin versions should go here, so below they can be omitted -->
-        <version.plugin.maven.enforcer>3.0.0-M2</version.plugin.maven.enforcer>
-        <version.plugin.maven.jar>3.1.0</version.plugin.maven.jar>
-        <version.plugin.maven.compiler>3.8.0</version.plugin.maven.compiler>
+        <version.plugin.maven.enforcer>3.0.0-M3</version.plugin.maven.enforcer>
+        <version.plugin.maven.jar>3.2.0</version.plugin.maven.jar>
+        <version.plugin.maven.compiler>3.8.1</version.plugin.maven.compiler>
         <version.plugin.maven.resources>3.1.0</version.plugin.maven.resources>
         <version.plugin.maven.jacoco>0.8.5</version.plugin.maven.jacoco>
+        <version.plugin.maven.site>3.8.2</version.plugin.maven.site>
+        <version.plugin.maven.project-info-reports>3.0.0</version.plugin.maven.project-info-reports>
+        <version.plugin.maven.sonar>3.7.0.1746</version.plugin.maven.sonar>
+        <!-- plugins for reporting section -->
         <version.plugin.maven.checkstyle>3.1.0</version.plugin.maven.checkstyle>
+        <version.plugin.maven.pmd>3.12.0</version.plugin.maven.pmd>
+        <version.plugin.maven.jxr>3.0.0</version.plugin.maven.jxr>
+        <version.plugin.maven.spotbugs>3.1.12.2</version.plugin.maven.spotbugs>
+        <!-- dependencies versions -->
+        <version.error_prone_core>2.3.4</version.error_prone_core>
     </properties>
 
     <dependencies>
@@ -49,6 +58,57 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <reporting>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jxr-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${version.plugin.maven.jxr}</version>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${version.plugin.maven.checkstyle}</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                    <failOnViolation>false</failOnViolation>
+                    <enableFilesSummary>false</enableFilesSummary>
+                </configuration>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${version.plugin.maven.pmd}</version>
+                <configuration>
+                    <sourceEncoding>${project.reporting.outputEncoding}</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                    <targetJdk>${project.java.version}</targetJdk>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${version.plugin.maven.jacoco}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-maven-plugin -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${version.plugin.maven.spotbugs}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <build>
         <plugins>
@@ -96,6 +156,21 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.plugin.maven.compiler}</version>
+                <configuration>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
+                    <compilerArgs>
+                        <arg>-XDcompilePolicy=simple</arg>
+                        <arg>-Xplugin:ErrorProne</arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_core</artifactId>
+                            <version>${version.error_prone_core}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -140,23 +215,24 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${version.plugin.maven.site}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${version.plugin.maven.project-info-reports}</version>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${version.plugin.maven.checkstyle}</version>
                 <configuration>
                     <configLocation>google_checks.xml</configLocation>
-                    <encoding>UTF-8</encoding>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
+                    <failOnViolation>false</failOnViolation>
+                    <enableFilesSummary>false</enableFilesSummary>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

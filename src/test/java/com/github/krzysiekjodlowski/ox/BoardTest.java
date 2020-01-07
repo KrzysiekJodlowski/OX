@@ -1,5 +1,8 @@
 package com.github.krzysiekjodlowski.ox;
 
+import com.github.krzysiekjodlowski.ox.board.Board;
+import com.github.krzysiekjodlowski.ox.model.FieldNumber;
+import com.github.krzysiekjodlowski.ox.model.Symbol;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -36,7 +39,7 @@ public class BoardTest {
         Board board = new Board(3);
 
         //act
-        board.markField(fieldNumber, symbol);
+        board.handle(new Move(fieldNumber, symbol));
 
         //assert
         assertEquals(board.toString(), boardRepresentation);
