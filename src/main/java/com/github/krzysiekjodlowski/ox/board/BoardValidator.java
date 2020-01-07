@@ -20,7 +20,7 @@ public class BoardValidator implements Subscriber {
   private Board board;
 
   /**
-   * Initializes all checher classes.
+   * Initializes all checker classes.
    * @param board game board
    * @param winCondition winning line length
    */
